@@ -49,7 +49,7 @@ function Page() {
   const [userPosts, setUserPosts] = useState<ParsedEvent[]>([]);
   const [signing, setSigning] = useState(false);
 
-  const { follows, key, resolveKind3 } = useStores();
+  const { follows, key, resolveKind3, kind3Ready } = useStores();
   const isFollowing = follows.includes(pubkey);
 
   useEffect(() => {
@@ -69,6 +69,15 @@ function Page() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    if (key?.pub && !kind3Ready) {
+      const k3 = getKind3(key.pub);
+      if (k3) {
+        resolveKind3(k3);
+      }
+    }
+  }, [key?.pub, kind3Ready, resolveKind3]);
 
   const { profile, loading } = useUserProfile(pubkey || undefined);
 

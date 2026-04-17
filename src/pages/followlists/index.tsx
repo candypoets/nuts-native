@@ -1,14 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { root, view, text, input, image } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';
 import { useStores } from '../../stores/StoreContext.js';
-import { getKind0 } from '../../lib/nipworker-mock.js';
+import { getKind0, getKind3 } from '../../lib/nipworker-mock.js';
 
 function Page() {
   const [activeTab, setActiveTab] = useState<'packs' | 'content'>('packs');
   const [search, setSearch] = useState('');
-  const { follows } = useStores();
+  const { follows, key, resolveKind3, kind3Ready } = useStores();
+
+  useEffect(() => {
+    if (key?.pub && !kind3Ready) {
+      const k3 = getKind3(key.pub);
+      if (k3) {
+        resolveKind3(k3);
+      }
+    }
+  }, [key?.pub, kind3Ready, resolveKind3]);
 
   return (
     <PageShell title="Feed Builder">

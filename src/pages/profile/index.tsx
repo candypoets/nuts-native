@@ -5,12 +5,12 @@ import { PageShell } from '../../components/PageShell.js';
 import { go } from '../../lib/navigation.js';
 import { useKeyStore } from '../../stores/useKeyStore.js';
 import { useNostrStore } from '../../stores/useNostrStore.js';
-import { getKind0 } from '../../lib/nipworker-mock.js';
+import { getKind0, getKind3 } from '../../lib/nipworker-mock.js';
 
 function Page() {
   const [search, setSearch] = useState('');
   const { key } = useKeyStore();
-  const { parsedKind0, resolveKind0 } = useNostrStore();
+  const { parsedKind0, resolveKind0, resolveKind3, kind3Ready } = useNostrStore();
 
   useEffect(() => {
     if (key.pub && !parsedKind0) {
@@ -20,6 +20,15 @@ function Page() {
       }
     }
   }, [key.pub, parsedKind0, resolveKind0]);
+
+  useEffect(() => {
+    if (key.pub && !kind3Ready) {
+      const k3 = getKind3(key.pub);
+      if (k3) {
+        resolveKind3(k3);
+      }
+    }
+  }, [key.pub, kind3Ready, resolveKind3]);
 
   const displayName = parsedKind0?.name || key.npub?.slice(0, 12) + '...' || 'Profile';
   const picture = parsedKind0?.picture;
