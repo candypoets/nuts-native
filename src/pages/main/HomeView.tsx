@@ -4,7 +4,7 @@ import { EmptyWallet } from '../../components/EmptyWallet.js';
 import { go } from '../../lib/navigation.js';
 
 export function HomeView() {
-	const { key } = useStores();
+	const { key, unreadCount } = useStores();
 	const hasWallet = false;
 	const walletItems: any[] = [];
 
@@ -19,11 +19,14 @@ export function HomeView() {
 							<view bindtap={() => go('qr')}>
 								<text className="text-2xl">🔲</text>
 							</view>
-							<view bindtap={() => go('profile')}>
+							<view className="relative" bindtap={() => go('profile')}>
 								<image
 									src="asset:///miss-profile.png"
 									className="w-8 h-8 rounded-full border border-white/20"
 								/>
+								{unreadCount > 0 && (
+									<view className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500" />
+								)}
 							</view>
 						</view>
 					</view>

@@ -21,6 +21,7 @@ export interface RequestObject {
   limit?: number;
   cacheFirst?: boolean;
   noOptimize?: boolean;
+  tags?: Record<string, string[]>;
 }
 
 export interface Kind10002Parsed {
@@ -123,6 +124,98 @@ mockKind0Events.forEach((e) => {
   kind0Cache.set(e.pubkey, createMockParsedEvent(e, ParsedData.Kind0Parsed));
 });
 
+export const TEST_USER_PUBKEY = '6a72db8ef3f3b9ee5ecd808ed6d0631d1e4dda5c5dadf07887104d33957eba48';
+
+const mockNotificationEvents = [
+  {
+    id: 'notif-reply-1',
+    kind: 1,
+    pubkey: '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777',
+    content: 'Replying to your post!',
+    createdAt: Math.floor(Date.now() / 1000) - 120,
+    tags: [
+      ['e', 'ev1'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-reply-2',
+    kind: 1,
+    pubkey: 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456',
+    content: 'Great point, totally agree!',
+    createdAt: Math.floor(Date.now() / 1000) - 300,
+    tags: [
+      ['e', 'ev2'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-mention-1',
+    kind: 1,
+    pubkey: '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777',
+    content: 'Hey @alice check this out!',
+    createdAt: Math.floor(Date.now() / 1000) - 600,
+    tags: [
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-mention-2',
+    kind: 1,
+    pubkey: 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456',
+    content: 'Alice you should see this thread',
+    createdAt: Math.floor(Date.now() / 1000) - 900,
+    tags: [
+      ['e', 'ev99'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-reaction-1',
+    kind: 7,
+    pubkey: '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777',
+    content: '❤️',
+    createdAt: Math.floor(Date.now() / 1000) - 180,
+    tags: [
+      ['e', 'ev1'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-reaction-2',
+    kind: 7,
+    pubkey: 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456',
+    content: '🚀',
+    createdAt: Math.floor(Date.now() / 1000) - 450,
+    tags: [
+      ['e', 'ev3'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-repost-1',
+    kind: 6,
+    pubkey: '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777',
+    content: 'Reposting...',
+    createdAt: Math.floor(Date.now() / 1000) - 240,
+    tags: [
+      ['e', 'ev1'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+  {
+    id: 'notif-repost-2',
+    kind: 6,
+    pubkey: 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456',
+    content: 'Reposting...',
+    createdAt: Math.floor(Date.now() / 1000) - 720,
+    tags: [
+      ['e', 'ev2'],
+      ['p', TEST_USER_PUBKEY],
+    ],
+  },
+];
+
 export function getKind0(pubkey: string): ParsedEvent | undefined {
   return kind0Cache.get(pubkey);
 }
@@ -156,6 +249,25 @@ export function subscribeToEvents(
     return () => {
       clearTimeout(timeout);
     };
+  }
+
+  // Notification events: kinds [1,6,7] with #p tag referencing TEST_USER_PUBKEY
+  const hasNotificationFilter = filters.some((f) => {
+    const kinds = f.kinds || [];
+    const hasKinds = kinds.includes(1) || kinds.includes(6) || kinds.includes(7);
+    const pTags = f.tags?.p || [];
+    const hasPTag = pTags.includes(TEST_USER_PUBKEY);
+    const noAuthors = !f.authors || f.authors.length === 0;
+    return hasKinds && hasPTag && noAuthors;
+  });
+
+  if (callback && hasNotificationFilter) {
+    const timeout = setTimeout(() => {
+      mockNotificationEvents.forEach((e) => {
+        callback(createMockParsedEvent(e) as unknown as WorkerMessage);
+      });
+    }, 100);
+    return () => clearTimeout(timeout);
   }
 
   if (callback && filters.some((f) => f.kinds?.includes(1))) {

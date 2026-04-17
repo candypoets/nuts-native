@@ -2,9 +2,11 @@ import { view, text, image, list } from '@lynx-js/react';
 import { go } from '../../lib/navigation.js';
 import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js';
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
+import { useStores } from '../../stores/StoreContext.js';
 
 export function ExploreView() {
   const { events, loading, refreshing, hasMore, onRefresh, onNearBottom } = useExploreFeed();
+  const { unreadCount } = useStores();
 
   return (
     <view className="flex-1 bg-base-300 bg-opacity-85 flex flex-col">
@@ -16,8 +18,11 @@ export function ExploreView() {
           </view>
         </view>
         <view className="flex gap-3 items-center">
-          <view bindtap={() => go('notifications')}>
+          <view className="relative" bindtap={() => go('notifications')}>
             <text className="text-2xl">🔔</text>
+            {unreadCount > 0 && (
+              <view className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500" />
+            )}
           </view>
           <view bindtap={() => go('profile')}>
             <image
