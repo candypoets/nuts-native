@@ -4,6 +4,9 @@ import { PostFooter } from './posts/PostFooter.js';
 import { ContentBlocks } from './posts/ContentBlocks.js';
 import { PostPicture } from './posts/PostPicture.js';
 import { ImageGrid } from './posts/ImageGrid.js';
+import { PollCard } from './posts/PollCard.js';
+import { ArticleCard } from './posts/ArticleCard.js';
+import { LiveCard } from './posts/LiveCard.js';
 import { go } from '../lib/navigation.js';
 
 const imageRegex = /https?:\/\/[^\s]+\.(?:jpg|jpeg|png|gif|webp|avif|bmp|svg)(?:\?[^\s]*)?/gi;
@@ -15,6 +18,24 @@ function extractImageUrls(text: string): string[] {
     urls.push(match[0]);
   }
   return urls;
+}
+
+export function serializeEvent(event: {
+  id(): string;
+  kind(): number;
+  pubkey(): string;
+  content(): string;
+  createdAt(): number;
+  tags(): string[][];
+}) {
+  return {
+    id: event.id(),
+    kind: event.kind(),
+    pubkey: event.pubkey(),
+    content: event.content(),
+    createdAt: event.createdAt(),
+    tags: event.tags(),
+  };
 }
 
 export function PostCard({
@@ -68,16 +89,30 @@ export function PostCardFromEvent({
     tags(): string[][];
   };
 }) {
-  const isPicture = event.kind() === 20;
+  const kind = event.kind();
+  const isPicture = kind === 20;
+  const isPoll = kind === 1068;
+  const isArticle = kind === 30023;
+  const isLive = kind === 1311;
   const contentText = event.content();
   const images = !isPicture ? extractImageUrls(contentText) : [];
+
+  const handleBodyTap = () => {
+    go('note', { event: serializeEvent(event) });
+  };
 
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
       <PostHeader pubkey={() => event.pubkey()} createdAt={() => event.createdAt()} />
-      <view className="mt-1 pl-10">
+      <view className="mt-1 pl-10" bindtap={handleBodyTap}>
         {isPicture ? (
           <PostPicture note={event} />
+        ) : isPoll ? (
+          <PollCard note={event} />
+        ) : isArticle ? (
+          <ArticleCard note={event} />
+        ) : isLive ? (
+          <LiveCard note={event} onLink={(url: string) => console.log('open link', url)} />
         ) : (
           <>
             <ContentBlocks

@@ -5,7 +5,7 @@ export const pathOptions = [
 	'receive', 'send', 'scan', 'qr', 'ecash', 'cmdk', 'followlists', 'kind1111',
 	'lightning', 'login', 'minting', 'minted', 'melt', 'melted', 'newchat', 'tapcash',
 	'profile', 'zaps', 'keys', 'wallet', 'post', 'reply', 'repost', 'relays',
-	'relayinfos', 'share', 'logout', 'theme', 'zoom', 'kind0', 'tags'
+	'relayinfos', 'share', 'logout', 'theme', 'zoom', 'kind0', 'tags', 'note'
 ];
 
 export const pathNeedsLogin = [

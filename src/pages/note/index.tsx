@@ -1,35 +1,64 @@
-import { root } from '@lynx-js/react';
-import { view, text } from '@lynx-js/react';
+import { useState, useEffect } from 'react';
+import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
-import { PostCard } from '../../components/PostCard.js';
+import { PostCardFromEvent } from '../../components/PostCard.js';
+import { getItem, setItem } from '../../stores/storage.js';
 import { go } from '../../lib/navigation.js';
 
-function Page() {
-  const mockNote = {
-    name: 'Alice',
-    pubkey: 'npub1alice...',
-    content: 'This is a mock note for the detail page. In the full app, this will display the actual Nostr note content loaded from relays.',
-    createdAt: Math.floor(Date.now() / 1000) - 3600,
-    picture: undefined,
+function wrapEvent(raw: {
+  id: string;
+  kind: number;
+  pubkey: string;
+  content: string;
+  createdAt: number;
+  tags: string[][];
+}) {
+  return {
+    id: () => raw.id,
+    kind: () => raw.kind,
+    pubkey: () => raw.pubkey,
+    content: () => raw.content,
+    createdAt: () => raw.createdAt,
+    tags: () => raw.tags,
   };
+}
+
+function Page() {
+  const [event, setEvent] = useState<ReturnType<typeof wrapEvent> | null>(null);
+
+  useEffect(() => {
+    getItem('__nav_params')
+      .then((json) => {
+        if (json) {
+          try {
+            const params = JSON.parse(json);
+            if (params.event && typeof params.event === 'object') {
+              setEvent(wrapEvent(params.event));
+            }
+          } catch {
+            // ignore parse errors
+          }
+          // Clear after reading to avoid stale data on back-navigation
+          setItem('__nav_params', '').catch(() => {});
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  if (!event) {
+    return (
+      <PageShell title="Note">
+        <view className="flex items-center justify-center py-20">
+          <text className="text-white/50 text-sm">Note not found</text>
+        </view>
+      </PageShell>
+    );
+  }
 
   return (
-    <PageShell
-      title="Note"
-      rightAction={
-        <view bindtap={() => go('explore')}>
-          <text className="text-white/70 text-sm">✕</text>
-        </view>
-      }
-    >
+    <PageShell title="Note">
       <view className="flex flex-col -mx-4 -mt-4">
-        <PostCard
-          name={mockNote.name}
-          pubkey={mockNote.pubkey}
-          content={mockNote.content}
-          createdAt={mockNote.createdAt}
-          picture={mockNote.picture}
-        />
+        <PostCardFromEvent event={event} />
 
         <view className="px-4 py-4 flex flex-row justify-around border-b border-white/10">
           <view
@@ -48,7 +77,7 @@ function Page() {
           </view>
           <view
             className="flex flex-col items-center gap-1"
-            bindtap={() => go('wallet')}
+            bindtap={() => go('zaps')}
           >
             <text className="text-white/70 text-lg">⚡</text>
             <text className="text-white/50 text-xs">Zap</text>
@@ -58,7 +87,7 @@ function Page() {
         <view className="px-4 py-6">
           <text className="text-white/40 text-sm uppercase tracking-wide">Replies</text>
           <view className="mt-4 py-6 flex items-center justify-center">
-            <text className="text-white/40 text-sm">No replies yet</text>
+            <text className="text-white/40 text-sm">Replies coming soon</text>
           </view>
         </view>
       </view>
