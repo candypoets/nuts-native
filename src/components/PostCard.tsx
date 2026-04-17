@@ -79,6 +79,7 @@ export function PostCard({
 
 export function PostCardFromEvent({
   event,
+  onPress,
 }: {
   event: {
     id(): string;
@@ -88,6 +89,7 @@ export function PostCardFromEvent({
     createdAt(): number;
     tags(): string[][];
   };
+  onPress?: () => void;
 }) {
   const kind = event.kind();
   const isPicture = kind === 20;
@@ -97,14 +99,10 @@ export function PostCardFromEvent({
   const contentText = event.content();
   const images = !isPicture ? extractImageUrls(contentText) : [];
 
-  const handleBodyTap = () => {
-    go('note', { event: serializeEvent(event) });
-  };
-
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
       <PostHeader pubkey={() => event.pubkey()} createdAt={() => event.createdAt()} />
-      <view className="mt-1 pl-10" bindtap={handleBodyTap}>
+      <view className="mt-1 pl-10" bindtap={onPress}>
         {isPicture ? (
           <PostPicture note={event} />
         ) : isPoll ? (

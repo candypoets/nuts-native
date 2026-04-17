@@ -32,7 +32,7 @@ export function LiveCard({
   }
 
   return (
-    <view className="w-full flex flex-col gap-2 py-2" catchtap={handleTap}>
+    <view className="w-full flex flex-col gap-2 py-2">
       <view className="flex flex-row items-center gap-2">
         {isLive ? (
           <view className="flex flex-row items-center gap-1">

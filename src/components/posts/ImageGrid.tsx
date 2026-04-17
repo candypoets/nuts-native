@@ -17,7 +17,7 @@ export function ImageGrid({
           src={urls[0]}
           className="w-full h-full rounded-lg"
           style={{ objectFit: 'cover' }}
-          bindtap={() => onImageTap?.(0)}
+          catchtap={() => onImageTap?.(0)}
         />
       </view>
     );
@@ -32,7 +32,7 @@ export function ImageGrid({
               src={url}
               className="w-full h-full rounded-lg"
               style={{ objectFit: 'cover' }}
-              bindtap={() => onImageTap?.(idx)}
+              catchtap={() => onImageTap?.(idx)}
             />
           </view>
         ))}
@@ -48,7 +48,7 @@ export function ImageGrid({
             src={urls[0]}
             className="w-full h-full rounded-lg"
             style={{ objectFit: 'cover' }}
-            bindtap={() => onImageTap?.(0)}
+            catchtap={() => onImageTap?.(0)}
           />
         </view>
         <view className="flex flex-row" style={{ gap: '2px' }}>
@@ -58,7 +58,7 @@ export function ImageGrid({
                 src={url}
                 className="w-full h-full rounded-lg"
                 style={{ objectFit: 'cover' }}
-                bindtap={() => onImageTap?.(idx + 1)}
+                catchtap={() => onImageTap?.(idx + 1)}
               />
             </view>
           ))}
@@ -84,7 +84,7 @@ export function ImageGrid({
                   src={url}
                   className="w-full h-full rounded-lg"
                   style={{ objectFit: 'cover' }}
-                  bindtap={() => onImageTap?.(idx)}
+                  catchtap={() => onImageTap?.(idx)}
                 />
               </view>
             );

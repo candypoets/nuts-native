@@ -102,7 +102,7 @@ export function ContentBlocks({
                 <view
                   key={key}
                   className="w-full my-1 px-3 py-2 rounded-lg border border-white/10 bg-white/5 flex flex-row items-center gap-2"
-                  bindtap={() => onLink?.(token.value)}
+                  catchtap={() => onLink?.(token.value)}
                 >
                   <text className="text-sm">🌐</text>
                   <text className="text-sm text-white/80">{hostname}</text>
@@ -119,7 +119,7 @@ export function ContentBlocks({
                   key={key}
                   className="w-full my-2 rounded-lg flex flex-col items-center justify-center"
                   style={{ aspectRatio: '16/9', backgroundColor: '#0f0f0f' }}
-                  bindtap={() => onLink?.(token.value)}
+                  catchtap={() => onLink?.(token.value)}
                 >
                   <text className="text-3xl">▶️</text>
                   <text className="text-sm text-white/60 mt-2">YouTube video</text>
@@ -132,7 +132,7 @@ export function ContentBlocks({
                   key={key}
                   className="text-sm font-semibold"
                   style={{ color: 'var(--primary)' }}
-                  bindtap={() => onMention?.(token.value)}
+                  catchtap={() => onMention?.(token.value)}
                 >
                   {token.raw}
                 </text>
@@ -144,7 +144,7 @@ export function ContentBlocks({
                   key={key}
                   className="text-sm font-semibold"
                   style={{ color: 'var(--primary)' }}
-                  bindtap={() => onMention?.(token.value)}
+                  catchtap={() => onMention?.(token.value)}
                 >
                   @{token.value}
                 </text>
@@ -156,7 +156,7 @@ export function ContentBlocks({
                   key={key}
                   className="text-sm font-semibold"
                   style={{ color: 'var(--primary)' }}
-                  bindtap={() => onHashtag?.(token.value)}
+                  catchtap={() => onHashtag?.(token.value)}
                 >
                   {token.value}
                 </text>
@@ -175,7 +175,7 @@ export function ContentBlocks({
           <text
             className="text-sm font-medium"
             style={{ color: 'var(--primary)' }}
-            bindtap={() => setExpanded(!expanded)}
+            catchtap={() => setExpanded(!expanded)}
           >
             {expanded ? 'See less' : 'See more'}
           </text>

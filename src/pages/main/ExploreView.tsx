@@ -1,6 +1,6 @@
 import { view, text, scrollView, image } from '@lynx-js/react';
 import { go } from '../../lib/navigation.js';
-import { PostCardFromEvent } from '../../components/PostCard.js';
+import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js';
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
 
 export function ExploreView() {
@@ -50,7 +50,11 @@ export function ExploreView() {
           )}
 
           {events.map((event) => (
-            <PostCardFromEvent key={event.id()} event={event} />
+            <PostCardFromEvent
+              key={event.id()}
+              event={event}
+              onPress={() => go('note', { event: serializeEvent(event) })}
+            />
           ))}
 
           {loading && hasMore && events.length > 0 && (
