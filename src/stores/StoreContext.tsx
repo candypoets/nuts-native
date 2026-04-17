@@ -15,7 +15,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 	const viewportStore = useViewportStore();
 	const nostrStore = useNostrStore();
 	const imageStore = useImageStore();
-	const notificationStore = useNotificationStore();
+	const notificationStore = useNotificationStore(keyStore.key.pub);
 
 	return (
 		<StoreContext.Provider

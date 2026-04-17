@@ -134,7 +134,7 @@ const mockNotificationEvents = [
     content: 'Replying to your post!',
     createdAt: Math.floor(Date.now() / 1000) - 120,
     tags: [
-      ['e', 'ev1'],
+      ['e', 'ev1', '', 'reply'],
       ['p', TEST_USER_PUBKEY],
     ],
   },
@@ -145,7 +145,7 @@ const mockNotificationEvents = [
     content: 'Great point, totally agree!',
     createdAt: Math.floor(Date.now() / 1000) - 300,
     tags: [
-      ['e', 'ev2'],
+      ['e', 'ev2', '', 'reply'],
       ['p', TEST_USER_PUBKEY],
     ],
   },
