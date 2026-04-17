@@ -1,16 +1,28 @@
 import { useState } from 'react';
-import { view, text, image } from '@lynx-js/react';
+import { view, text } from '@lynx-js/react';
 
 type Token =
   | { type: 'text'; value: string }
   | { type: 'url'; value: string }
   | { type: 'image'; value: string }
-  | { type: 'hashtag'; value: string };
+  | { type: 'hashtag'; value: string }
+  | { type: 'youtube'; value: string; videoId: string }
+  | { type: 'mention'; value: string; raw: string }
+  | { type: 'username'; value: string };
 
 const imageRegex = /https?:\/\/[^\s]+\.(?:jpg|jpeg|png|gif|webp|avif|bmp|svg)(?:\?[^\s]*)?/i;
 
+function isYouTubeUrl(url: string): boolean {
+  return /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)/i.test(url);
+}
+
+function extractYouTubeId(url: string): string | null {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/);
+  return match?.[1] ?? null;
+}
+
 function tokenize(input: string): Token[] {
-  const regex = /(https?:\/\/[^\s]+)|(#\w+)/g;
+  const regex = /(https?:\/\/[^\s]+)|(nostr:npub1[ac-hj-np-z02-9]+|nostr:nprofile1[ac-hj-np-z02-9]+)|(@\w+)|(#\w+)/g;
   const tokens: Token[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
@@ -21,9 +33,27 @@ function tokenize(input: string): Token[] {
     }
     if (match[1]) {
       const url = match[1];
-      tokens.push(imageRegex.test(url) ? { type: 'image', value: url } : { type: 'url', value: url });
+      if (isYouTubeUrl(url)) {
+        const videoId = extractYouTubeId(url);
+        if (videoId) {
+          tokens.push({ type: 'youtube', value: url, videoId });
+        } else {
+          tokens.push({ type: 'url', value: url });
+        }
+      } else if (imageRegex.test(url)) {
+        tokens.push({ type: 'image', value: url });
+      } else {
+        tokens.push({ type: 'url', value: url });
+      }
     } else if (match[2]) {
-      tokens.push({ type: 'hashtag', value: match[2] });
+      const raw = match[2];
+      const value = raw.replace(/^nostr:/, '');
+      tokens.push({ type: 'mention', value, raw });
+    } else if (match[3]) {
+      const value = match[3].slice(1);
+      tokens.push({ type: 'username', value });
+    } else if (match[4]) {
+      tokens.push({ type: 'hashtag', value: match[4] });
     }
     lastIndex = regex.lastIndex;
   }
@@ -40,11 +70,13 @@ export function ContentBlocks({
   collapsible = false,
   onHashtag,
   onLink,
+  onMention,
 }: {
   content: string | (() => string);
   collapsible?: boolean;
   onHashtag?: (tag: string) => void;
   onLink?: (url: string) => void;
+  onMention?: (pubkeyOrName: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
 
@@ -60,26 +92,62 @@ export function ContentBlocks({
           {tokenize(line).map((token, tokenIndex) => {
             const key = `${lineIndex}-${tokenIndex}`;
             if (token.type === 'url') {
+              let hostname = '';
+              try {
+                hostname = new URL(token.value).hostname;
+              } catch {
+                hostname = token.value;
+              }
               return (
-                <text
+                <view
                   key={key}
-                  className="text-sm"
-                  style={{ color: 'var(--accent)' }}
+                  className="w-full my-1 px-3 py-2 rounded-lg border border-white/10 bg-white/5 flex flex-row items-center gap-2"
                   bindtap={() => onLink?.(token.value)}
                 >
-                  {token.value}
-                </text>
+                  <text className="text-sm">🌐</text>
+                  <text className="text-sm text-white/80">{hostname}</text>
+                </view>
               );
             }
             if (token.type === 'image') {
+              // Images are rendered in ImageGrid below; skip inline rendering
+              return null;
+            }
+            if (token.type === 'youtube') {
               return (
-                <view key={key} className="w-full my-2">
-                  <image
-                    src={token.value}
-                    className="w-full h-48 rounded-lg"
-                    style={{ objectFit: 'contain' }}
-                  />
+                <view
+                  key={key}
+                  className="w-full my-2 rounded-lg flex flex-col items-center justify-center"
+                  style={{ aspectRatio: '16/9', backgroundColor: '#0f0f0f' }}
+                  bindtap={() => onLink?.(token.value)}
+                >
+                  <text className="text-3xl">▶️</text>
+                  <text className="text-sm text-white/60 mt-2">YouTube video</text>
                 </view>
+              );
+            }
+            if (token.type === 'mention') {
+              return (
+                <text
+                  key={key}
+                  className="text-sm font-semibold"
+                  style={{ color: 'var(--primary)' }}
+                  bindtap={() => onMention?.(token.value)}
+                >
+                  {token.raw}
+                </text>
+              );
+            }
+            if (token.type === 'username') {
+              return (
+                <text
+                  key={key}
+                  className="text-sm font-semibold"
+                  style={{ color: 'var(--primary)' }}
+                  bindtap={() => onMention?.(token.value)}
+                >
+                  @{token.value}
+                </text>
               );
             }
             if (token.type === 'hashtag') {
@@ -88,7 +156,7 @@ export function ContentBlocks({
                   key={key}
                   className="text-sm font-semibold"
                   style={{ color: 'var(--primary)' }}
-                  bindtap={() => onHashtag?.(token.value.slice(1))}
+                  bindtap={() => onHashtag?.(token.value)}
                 >
                   {token.value}
                 </text>

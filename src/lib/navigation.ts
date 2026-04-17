@@ -4,7 +4,7 @@ export const pathOptions = [
 	'receive', 'send', 'scan', 'qr', 'ecash', 'cmdk', 'followlists', 'kind1111',
 	'lightning', 'login', 'minting', 'minted', 'melt', 'melted', 'newchat', 'tapcash',
 	'profile', 'zaps', 'keys', 'wallet', 'post', 'reply', 'repost', 'relays',
-	'relayinfos', 'share', 'logout', 'theme', 'zoom', 'kind0'
+	'relayinfos', 'share', 'logout', 'theme', 'zoom', 'kind0', 'tags'
 ];
 
 export const pathNeedsLogin = [
@@ -13,7 +13,7 @@ export const pathNeedsLogin = [
 	'keys', 'wallet', 'post', 'reply', 'repost', 'relays', 'share', 'logout'
 ];
 
-export function go(path: string, params?: Record<string, string | number | boolean>) {
+export function go(path: string, params?: Record<string, unknown>) {
 	sparklingNavigate(
 		{
 			path,
