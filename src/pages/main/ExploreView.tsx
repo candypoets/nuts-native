@@ -4,7 +4,7 @@ import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js'
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
 
 export function ExploreView() {
-  const { events, loading, refreshing, hasMore, onRefresh, onNearBottom } = useExploreFeed();
+  const { events, loading, hasMore, onNearBottom } = useExploreFeed();
 
   return (
     <view className="flex-1 bg-base-300 bg-opacity-85 flex flex-col">
@@ -32,12 +32,9 @@ export function ExploreView() {
       <list
         className="flex-1"
         bindscrolltolower={onNearBottom}
-        refresher-enabled={true}
-        bindrefresherrefresh={onRefresh}
-        refresher-triggered={refreshing}
       >
         {loading && events.length === 0 && (
-          <list-item key="loading" item-key="loading">
+          <list-item key="loading" item-key="loading" estimated-main-axis-size-px={100}>
             <view className="py-12 flex flex-col items-center justify-center">
               <text className="text-white/60 text-sm">Loading posts…</text>
             </view>
@@ -45,7 +42,7 @@ export function ExploreView() {
         )}
 
         {!loading && events.length === 0 && (
-          <list-item key="empty" item-key="empty">
+          <list-item key="empty" item-key="empty" estimated-main-axis-size-px={100}>
             <view className="py-12 flex flex-col items-center justify-center">
               <text className="text-white/60 text-sm">No posts yet</text>
             </view>
@@ -53,7 +50,7 @@ export function ExploreView() {
         )}
 
         {events.map((event) => (
-          <list-item key={event.id()} item-key={event.id()}>
+          <list-item key={event.id()} item-key={event.id()} estimated-main-axis-size-px={300}>
             <PostCardFromEvent
               event={event}
               onPress={() => go('note', { event: serializeEvent(event) })}
@@ -62,7 +59,7 @@ export function ExploreView() {
         ))}
 
         {loading && hasMore && events.length > 0 && (
-          <list-item key="loading-more" item-key="loading-more">
+          <list-item key="loading-more" item-key="loading-more" estimated-main-axis-size-px={50}>
             <view className="py-6 flex flex-col items-center justify-center">
               <text className="text-white/40 text-sm">Loading more…</text>
             </view>
@@ -70,7 +67,7 @@ export function ExploreView() {
         )}
 
         {!loading && !hasMore && events.length > 0 && (
-          <list-item key="no-more" item-key="no-more">
+          <list-item key="no-more" item-key="no-more" estimated-main-axis-size-px={50}>
             <view className="py-6 flex flex-col items-center justify-center">
               <text className="text-white/40 text-sm">No more posts</text>
             </view>
