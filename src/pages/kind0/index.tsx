@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { useStores } from '../../stores/StoreContext.js';
-import { useSignEvent } from '../../lib/nipworker-mock.js';
+import { useSignEvent, getKind0, kind0Cache, ParsedData } from '../../lib/nipworker-mock.js';
+import type { ParsedEvent } from '../../lib/nipworker-mock.js';
 
 function deepEqual(a: any, b: any): boolean {
   if (a === b) return true;
@@ -29,6 +30,16 @@ function Page() {
   const [lud16, setLud16] = useState(parsedKind0?.lud16 ?? '');
   const [website, setWebsite] = useState(parsedKind0?.website ?? '');
   const [saved, setSaved] = useState(false);
+
+  // Fallback: seed from kind0Cache when StoreContext is not available (standalone page)
+  useEffect(() => {
+    if (key?.pub && !parsedKind0) {
+      const k0 = getKind0(key.pub);
+      if (k0) {
+        resolveKind0(k0);
+      }
+    }
+  }, [key?.pub, parsedKind0, resolveKind0]);
 
   useEffect(() => {
     setName(parsedKind0?.name ?? '');
@@ -77,9 +88,12 @@ function Page() {
         content: () => signedEvent.content,
         createdAt: () => signedEvent.created_at,
         tags: () => signedEvent.tags,
-        parsedType: () => 0,
+        parsedType: () => ParsedData.Kind0Parsed,
       };
       resolveKind0(wrapped);
+      // Persist to shared cache so getKind0() readers see the update
+      const pubkey = signedEvent.pubkey || key?.pub || 'mock-pubkey';
+      kind0Cache.set(pubkey, wrapped as unknown as ParsedEvent);
       setSaved(true);
       setTimeout(() => setSaved(false), 2000);
     });
