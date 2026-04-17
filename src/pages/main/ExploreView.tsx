@@ -4,7 +4,7 @@ import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js'
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
 
 export function ExploreView() {
-  const { events, loading, hasMore, onNearBottom } = useExploreFeed();
+  const { events, loading, refreshing, hasMore, onRefresh, onNearBottom } = useExploreFeed();
 
   return (
     <view className="flex-1 bg-base-300 bg-opacity-85 flex flex-col">
@@ -32,6 +32,9 @@ export function ExploreView() {
       <list
         className="flex-1"
         bindscrolltolower={onNearBottom}
+        refresher-enabled={true}
+        bindrefresherrefresh={onRefresh}
+        refresher-triggered={refreshing}
       >
         {loading && events.length === 0 && (
           <list-item key="loading" item-key="loading" estimated-main-axis-size-px={100}>
