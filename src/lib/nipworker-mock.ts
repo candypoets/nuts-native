@@ -51,14 +51,17 @@ export function getManager() {
   };
 }
 
-function createMockParsedEvent(data: {
-  id: string;
-  kind: number;
-  pubkey: string;
-  content: string;
-  createdAt: number;
-  tags: string[][];
-}): ParsedEvent {
+function createMockParsedEvent(
+  data: {
+    id: string;
+    kind: number;
+    pubkey: string;
+    content: string;
+    createdAt: number;
+    tags: string[][];
+  },
+  parsedType: ParsedData = ParsedData.Kind1Parsed
+): ParsedEvent {
   return {
     id: () => data.id,
     kind: () => data.kind,
@@ -66,8 +69,62 @@ function createMockParsedEvent(data: {
     content: () => data.content,
     createdAt: () => data.createdAt,
     tags: () => data.tags,
-    parsedType: () => ParsedData.Kind1Parsed,
+    parsedType: () => parsedType,
   };
+}
+
+const mockKind0Events = [
+  {
+    id: 'k0-alice',
+    kind: 0,
+    pubkey: '6a72db8ef3f3b9ee5ecd808ed6d0631d1e4dda5c5dadf07887104d33957eba48',
+    content: JSON.stringify({
+      name: 'Alice',
+      about: 'Nostr enthusiast & eCash user',
+      picture: 'https://i.pravatar.cc/150?u=alice',
+      nip05: 'alice@example.com',
+      banner: 'https://picsum.photos/800/300?u=alice',
+      lud16: 'alice@walletofsatoshi.com',
+      website: 'https://alice.dev',
+    }),
+    createdAt: Math.floor(Date.now() / 1000) - 86400,
+    tags: [],
+  },
+  {
+    id: 'k0-bob',
+    kind: 0,
+    pubkey: '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777',
+    content: JSON.stringify({
+      name: 'Bob',
+      about: 'Bitcoin maximalist',
+      picture: 'https://i.pravatar.cc/150?u=bob',
+    }),
+    createdAt: Math.floor(Date.now() / 1000) - 86400 * 2,
+    tags: [],
+  },
+  {
+    id: 'k0-carol',
+    kind: 0,
+    pubkey: 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456',
+    content: JSON.stringify({
+      name: 'Carol',
+      about: 'Building on Nostr',
+      picture: 'https://i.pravatar.cc/150?u=carol',
+    }),
+    createdAt: Math.floor(Date.now() / 1000) - 86400 * 3,
+    tags: [],
+  },
+];
+
+export const kind0Cache = new Map<string, ParsedEvent>();
+
+// Pre-populate cache with mock kind0 events
+mockKind0Events.forEach((e) => {
+  kind0Cache.set(e.pubkey, createMockParsedEvent(e, ParsedData.Kind0Parsed));
+});
+
+export function getKind0(pubkey: string): ParsedEvent | undefined {
+  return kind0Cache.get(pubkey);
 }
 
 export function useSubscription(
@@ -83,6 +140,24 @@ export function subscribeToEvents(
   filters: RequestObject[],
   callback?: (msg: WorkerMessage) => void
 ): () => void {
+  if (callback && filters.some((f) => f.kinds?.includes(0))) {
+    const timeout = setTimeout(() => {
+      filters.forEach((f) => {
+        if (!f.kinds?.includes(0)) return;
+        const authors = f.authors;
+        mockKind0Events.forEach((e) => {
+          if (!authors || authors.includes(e.pubkey)) {
+            callback(createMockParsedEvent(e, ParsedData.Kind0Parsed) as unknown as WorkerMessage);
+          }
+        });
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }
+
   if (callback && filters.some((f) => f.kinds?.includes(1))) {
     const baseTime = Math.floor(Date.now() / 1000);
     const mockEvents = [
@@ -120,9 +195,18 @@ export function subscribeToEvents(
       },
     ];
 
+    const authorsSet = new Set<string>();
+    filters.forEach((f) => {
+      if (f.kinds?.includes(1) && f.authors) {
+        f.authors.forEach((a) => authorsSet.add(a));
+      }
+    });
+
     const timeout = setTimeout(() => {
       mockEvents.forEach((e) => {
-        callback(createMockParsedEvent(e) as unknown as WorkerMessage);
+        if (authorsSet.size === 0 || authorsSet.has(e.pubkey)) {
+          callback(createMockParsedEvent(e) as unknown as WorkerMessage);
+        }
       });
     }, 100);
 
@@ -156,6 +240,10 @@ export function isParsedEvent(msg: WorkerMessage): ParsedEvent | null {
 
 export function isConnectionStatus(_msg: WorkerMessage): any | null {
   return null;
+}
+
+export function asKind0(msg: any): ParsedEvent | null {
+  return msg?.parsedType?.() === ParsedData.Kind0Parsed ? msg : null;
 }
 
 export function asKind1(msg: any): any | null {

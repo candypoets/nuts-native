@@ -43,7 +43,7 @@ export function PostHeader({
   return (
     <view className="flex gap-2 relative">
       <view className="w-8 min-w-8">
-        <view bindtap={() => go('user')}>
+        <view bindtap={() => go('user', { pubkey: pubkeyValue })}>
           <image
             src={pictureValue || 'asset:///miss-profile.png'}
             className="w-8 h-8 rounded-full border border-white/10 object-cover"
@@ -56,7 +56,7 @@ export function PostHeader({
             <view className="flex flex-row items-center gap-1 flex-1 min-w-0">
               <text
                 className="font-semibold text-sm text-white truncate"
-                bindtap={() => go('user')}
+                bindtap={() => go('user', { pubkey: pubkeyValue })}
               >
                 {displayName}
               </text>
@@ -76,7 +76,7 @@ export function PostHeader({
               <view className="flex flex-row items-center gap-1">
                 <text
                   className="font-semibold text-sm text-white truncate"
-                  bindtap={() => go('user')}
+                  bindtap={() => go('user', { pubkey: pubkeyValue })}
                 >
                   {displayName}
                 </text>
