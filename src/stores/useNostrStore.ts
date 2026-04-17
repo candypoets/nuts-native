@@ -20,6 +20,9 @@ export function useNostrStore() {
 	const [kind10063, setKind10063] = useState<any>(null);
 	const [kind10096, setKind10096] = useState<any>(null);
 
+	const [follows, setFollows] = useState<string[]>([]);
+	const [followsReady, setFollowsReady] = useState(false);
+
 	const [kind0Ready, setKind0Ready] = useState(false);
 	const [kind3Ready, setKind3Ready] = useState(false);
 	const [kind10002Ready, setKind10002Ready] = useState(false);
@@ -47,7 +50,21 @@ export function useNostrStore() {
 			}
 		}
 	}, []);
-	const resolveKind3 = useCallback((value: any) => { setKind3(value); setKind3Ready(true); }, []);
+	const resolveKind3 = useCallback((value: any) => {
+		setKind3(value);
+		setKind3Ready(true);
+		const followPubkeys: string[] = [];
+		if (value?.tags) {
+			const tags = typeof value.tags === 'function' ? value.tags() : value.tags;
+			if (Array.isArray(tags)) {
+				tags.forEach((tag: string[]) => {
+					if (tag[0] === 'p' && tag[1]) followPubkeys.push(tag[1]);
+				});
+			}
+		}
+		setFollows(followPubkeys);
+		setFollowsReady(true);
+	}, []);
 	const resolveKind10002 = useCallback((value: any) => { setKind10002(value); setKind10002Ready(true); }, []);
 	const resolveKind10000 = useCallback((value: any) => { setKind10000(value); setKind10000Ready(true); }, []);
 	const resolveKind10019 = useCallback((value: any) => { setKind10019(value); setKind10019Ready(true); }, []);
@@ -57,6 +74,7 @@ export function useNostrStore() {
 	return {
 		kind0, setKind0, kind0Ready, resolveKind0,
 		parsedKind0,
+		follows, followsReady,
 		kind3, setKind3, kind3Ready, resolveKind3,
 		kind10002, setKind10002, kind10002Ready, resolveKind10002,
 		kind10000, setKind10000, kind10000Ready, resolveKind10000,

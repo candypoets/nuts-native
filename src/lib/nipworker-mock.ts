@@ -74,6 +74,22 @@ function createMockParsedEvent(
   };
 }
 
+export const TEST_USER_PUBKEY = '6a72db8ef3f3b9ee5ecd808ed6d0631d1e4dda5c5dadf07887104d33957eba48';
+
+const mockKind3Events = [
+  {
+    id: 'k3-alice',
+    kind: 3,
+    pubkey: TEST_USER_PUBKEY,
+    content: '',
+    createdAt: Math.floor(Date.now() / 1000) - 86400,
+    tags: [
+      ['p', '49c3f0ee826a80010c75a66a3e2fb75324302a6969ad62f1e557a6b6dc667777', 'wss://relay.example.com'],
+      ['p', 'a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456', ''],
+    ],
+  },
+];
+
 const mockKind0Events = [
   {
     id: 'k0-alice',
@@ -118,13 +134,17 @@ const mockKind0Events = [
 ];
 
 export const kind0Cache = new Map<string, ParsedEvent>();
+export const kind3Cache = new Map<string, ParsedEvent>();
 
 // Pre-populate cache with mock kind0 events
 mockKind0Events.forEach((e) => {
   kind0Cache.set(e.pubkey, createMockParsedEvent(e, ParsedData.Kind0Parsed));
 });
 
-export const TEST_USER_PUBKEY = '6a72db8ef3f3b9ee5ecd808ed6d0631d1e4dda5c5dadf07887104d33957eba48';
+// Pre-populate cache with mock kind3 events
+mockKind3Events.forEach((e) => {
+  kind3Cache.set(e.pubkey, createMockParsedEvent(e, ParsedData.Kind3Parsed));
+});
 
 const mockNotificationEvents = [
   {
@@ -220,6 +240,23 @@ export function getKind0(pubkey: string): ParsedEvent | undefined {
   return kind0Cache.get(pubkey);
 }
 
+export function getKind3(pubkey: string): ParsedEvent | undefined {
+  return kind3Cache.get(pubkey);
+}
+
+export function getFollows(pubkey: string): string[] {
+  const k3 = kind3Cache.get(pubkey);
+  if (!k3) return [];
+  const follows: string[] = [];
+  const tags = k3.tags();
+  if (tags) {
+    tags.forEach((tag: string[]) => {
+      if (tag[0] === 'p' && tag[1]) follows.push(tag[1]);
+    });
+  }
+  return follows;
+}
+
 export function useSubscription(
   _subId: string,
   filters: RequestObject[],
@@ -233,6 +270,24 @@ export function subscribeToEvents(
   filters: RequestObject[],
   callback?: (msg: WorkerMessage) => void
 ): () => void {
+  if (callback && filters.some((f) => f.kinds?.includes(3))) {
+    const timeout = setTimeout(() => {
+      filters.forEach((f) => {
+        if (!f.kinds?.includes(3)) return;
+        const authors = f.authors;
+        mockKind3Events.forEach((e) => {
+          if (!authors || authors.length === 0 || authors.includes(e.pubkey)) {
+            callback(createMockParsedEvent(e, ParsedData.Kind3Parsed) as unknown as WorkerMessage);
+          }
+        });
+      });
+    }, 100);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }
+
   if (callback && filters.some((f) => f.kinds?.includes(0))) {
     const timeout = setTimeout(() => {
       filters.forEach((f) => {

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { root, view, text, image } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { PostCardFromEvent } from '../../components/PostCard.js';
 import { getItem, setItem } from '../../stores/storage.js';
 import { go } from '../../lib/navigation.js';
 import { useUserProfile } from '../../hooks/useUserProfile.js';
-import { subscribeToEvents, isParsedEvent, asKind1, type ParsedEvent, type WorkerMessage } from '../../lib/nipworker-mock.js';
+import { useStores } from '../../stores/StoreContext.js';
+import { subscribeToEvents, isParsedEvent, asKind1, useSignEvent, getKind3, kind3Cache, getFollows, ParsedData, type ParsedEvent, type WorkerMessage } from '../../lib/nipworker-mock.js';
 
 const TABS = ['Posts', 'Replies', 'Media', 'Likes'] as const;
 type Tab = (typeof TABS)[number];
@@ -46,6 +47,10 @@ function Page() {
   const [pubkey, setPubkey] = useState<string>('');
   const [activeTab, setActiveTab] = useState<Tab>('Posts');
   const [userPosts, setUserPosts] = useState<ParsedEvent[]>([]);
+  const [signing, setSigning] = useState(false);
+
+  const { follows, key, resolveKind3 } = useStores();
+  const isFollowing = follows.includes(pubkey);
 
   useEffect(() => {
     getItem('__nav_params')
@@ -83,6 +88,39 @@ function Page() {
       parsedProfile = {};
     }
   }
+
+  const followerCount = (() => {
+    let count = 0;
+    kind3Cache.forEach((ev) => {
+      const tags = ev.tags();
+      if (tags && tags.some((t: string[]) => t[0] === 'p' && t[1] === pubkey)) count++;
+    });
+    return count;
+  })();
+
+  const handleFollowUpdate = useCallback((newFollows: string[]) => {
+    const template = {
+      kind: 3,
+      content: '',
+      tags: newFollows.map((p: string) => ['p', p, '']),
+      created_at: Math.floor(Date.now() / 1000),
+    };
+    useSignEvent(template, (signedEvent: any) => {
+      const wrapped = {
+        id: () => signedEvent.id,
+        kind: () => signedEvent.kind,
+        pubkey: () => signedEvent.pubkey || key?.pub || 'mock-pubkey',
+        content: () => signedEvent.content,
+        createdAt: () => signedEvent.created_at,
+        tags: () => signedEvent.tags,
+        parsedType: () => ParsedData.Kind3Parsed,
+      };
+      resolveKind3(wrapped);
+      const pubkey = signedEvent.pubkey || key?.pub || 'mock-pubkey';
+      kind3Cache.set(pubkey, wrapped as unknown as ParsedEvent);
+      setSigning(false);
+    });
+  }, [key, resolveKind3]);
 
   useEffect(() => {
     if (!pubkey) {
@@ -174,14 +212,29 @@ function Page() {
           {/* Stats */}
           <view className="flex flex-row items-center justify-center gap-8 mt-4">
             <Stat label="Posts" value={String(userPosts.length || 0)} />
-            <Stat label="Followers" value="1.2K" />
-            <Stat label="Following" value="342" />
+            <Stat label="Followers" value={String(followerCount)} />
+            <Stat label="Following" value={String(getFollows(pubkey).length)} />
           </view>
 
           {/* Action Buttons */}
           <view className="flex flex-row gap-3 mt-4 w-full">
-            <view className="flex-1 bg-white py-2 rounded-full flex items-center justify-center">
-              <text className="text-black font-semibold text-sm">Follow</text>
+            <view
+              className={`flex-1 py-2 rounded-full flex items-center justify-center ${
+                isFollowing ? 'bg-white/10 border border-white/20' : 'bg-white'
+              }`}
+              bindtap={() => {
+                if (signing || !key?.pub) return;
+                setSigning(true);
+                if (isFollowing) {
+                  handleFollowUpdate(follows.filter((p: string) => p !== pubkey));
+                } else {
+                  handleFollowUpdate([...follows, pubkey]);
+                }
+              }}
+            >
+              <text className={`font-semibold text-sm ${isFollowing ? 'text-white' : 'text-black'}`}>
+                {isFollowing ? 'Following' : 'Follow'}
+              </text>
             </view>
             <view
               className="flex-1 bg-white/10 py-2 rounded-full flex items-center justify-center"

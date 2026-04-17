@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { root, view, text, input } from '@lynx-js/react';
+import { root, view, text, input, image } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';
+import { useStores } from '../../stores/StoreContext.js';
+import { getKind0 } from '../../lib/nipworker-mock.js';
 
 function Page() {
   const [activeTab, setActiveTab] = useState<'packs' | 'content'>('packs');
   const [search, setSearch] = useState('');
+  const { follows } = useStores();
 
   return (
     <PageShell title="Feed Builder">
@@ -47,6 +50,46 @@ function Page() {
         <view className="py-3 bg-accent rounded-xl items-center" bindtap={() => goBack()}>
           <text className="text-white font-semibold">Save Feed Builder</text>
         </view>
+      </view>
+
+      {/* Following List */}
+      <view className="mt-4">
+        <text className="text-white font-semibold text-base mb-3">Following</text>
+        {follows.length === 0 && (
+          <view className="py-8 items-center">
+            <text className="text-white/40 text-sm">Not following anyone yet</text>
+          </view>
+        )}
+        {follows.map((pubkey: string) => {
+          const k0 = getKind0(pubkey);
+          let name = '';
+          let picture = '';
+          if (k0) {
+            try {
+              const parsed = JSON.parse(k0.content());
+              name = parsed.name || '';
+              picture = parsed.picture || '';
+            } catch {
+              // ignore
+            }
+          }
+          const displayName = name || pubkey.slice(0, 12) + '...';
+          return (
+            <view
+              key={pubkey}
+              className="flex flex-row items-center gap-3 py-3 border-b border-white/10"
+            >
+              <image
+                src={picture || 'asset:///miss-profile.png'}
+                className="w-10 h-10 rounded-full object-cover"
+              />
+              <view className="flex flex-col">
+                <text className="text-white text-sm font-medium">{displayName}</text>
+                <text className="text-white/40 text-xs">{pubkey.slice(0, 16)}...</text>
+              </view>
+            </view>
+          );
+        })}
       </view>
     </PageShell>
   );
