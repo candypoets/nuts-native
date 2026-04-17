@@ -67,33 +67,30 @@ export function ImageGrid({
     );
   }
 
-  // 4 images: 2×2 grid
+  // 4+ images: 2-column grid, show all images
+  const rows: string[][] = [];
+  for (let i = 0; i < urls.length; i += 2) {
+    rows.push(urls.slice(i, i + 2));
+  }
   return (
     <view className="w-full mt-2 flex flex-col" style={{ gap: '2px' }}>
-      <view className="flex flex-row" style={{ gap: '2px' }}>
-        {urls.slice(0, 2).map((url, idx) => (
-          <view key={idx} className="flex-1" style={{ aspectRatio: '1/1' }}>
-            <image
-              src={url}
-              className="w-full h-full rounded-lg"
-              style={{ objectFit: 'cover' }}
-              bindtap={() => onImageTap?.(idx)}
-            />
-          </view>
-        ))}
-      </view>
-      <view className="flex flex-row" style={{ gap: '2px' }}>
-        {urls.slice(2, 4).map((url, idx) => (
-          <view key={idx + 2} className="flex-1" style={{ aspectRatio: '1/1' }}>
-            <image
-              src={url}
-              className="w-full h-full rounded-lg"
-              style={{ objectFit: 'cover' }}
-              bindtap={() => onImageTap?.(idx + 2)}
-            />
-          </view>
-        ))}
-      </view>
+      {rows.map((row, rowIdx) => (
+        <view key={rowIdx} className="flex flex-row" style={{ gap: '2px' }}>
+          {row.map((url, colIdx) => {
+            const idx = rowIdx * 2 + colIdx;
+            return (
+              <view key={idx} className="flex-1" style={{ aspectRatio: '1/1' }}>
+                <image
+                  src={url}
+                  className="w-full h-full rounded-lg"
+                  style={{ objectFit: 'cover' }}
+                  bindtap={() => onImageTap?.(idx)}
+                />
+              </view>
+            );
+          })}
+        </view>
+      ))}
     </view>
   );
 }

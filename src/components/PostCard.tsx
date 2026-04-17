@@ -30,6 +30,7 @@ export function PostCard({
   createdAt: number;
   picture?: string;
 }) {
+  const images = extractImageUrls(content);
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
       <PostHeader name={name} pubkey={pubkey} picture={picture} createdAt={createdAt} />
@@ -41,6 +42,12 @@ export function PostCard({
           onLink={(url: string) => console.log('open link', url)}
           onMention={(mention) => go('user', { pubkey: mention })}
         />
+        {images.length > 0 && (
+          <ImageGrid
+            urls={images}
+            onImageTap={(idx) => go('zoom', { url: images[idx], urls: images, index: idx })}
+          />
+        )}
       </view>
       <view className="pl-10">
         <PostFooter />
