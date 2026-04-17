@@ -4,6 +4,7 @@ import { useThemeStore } from './useThemeStore';
 import { useViewportStore } from './useViewportStore';
 import { useNostrStore } from './useNostrStore';
 import { useImageStore } from './useImageStore';
+import { useNotificationStore } from './useNotificationStore.js';
 
 export const StoreContext = createContext<any>(null);
 
@@ -14,6 +15,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 	const viewportStore = useViewportStore();
 	const nostrStore = useNostrStore();
 	const imageStore = useImageStore();
+	const notificationStore = useNotificationStore(keyStore.key.pub);
 
 	return (
 		<StoreContext.Provider
@@ -24,6 +26,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 				...viewportStore,
 				...nostrStore,
 				...imageStore,
+				...notificationStore,
 			}}
 		>
 			{children}

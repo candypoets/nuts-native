@@ -8,6 +8,7 @@ import { PollCard } from './posts/PollCard.js';
 import { ArticleCard } from './posts/ArticleCard.js';
 import { LiveCard } from './posts/LiveCard.js';
 import { go } from '../lib/navigation.js';
+import { getKind0 } from '../lib/nipworker-mock.js';
 
 const imageRegex = /https?:\/\/[^\s]+\.(?:jpg|jpeg|png|gif|webp|avif|bmp|svg)(?:\?[^\s]*)?/gi;
 
@@ -99,9 +100,30 @@ export function PostCardFromEvent({
   const contentText = event.content();
   const images = !isPicture ? extractImageUrls(contentText) : [];
 
+  const authorKind0 = getKind0(event.pubkey());
+  let authorName: string | undefined;
+  let authorPicture: string | undefined;
+  let authorNip05: string | undefined;
+  if (authorKind0) {
+    try {
+      const parsed = JSON.parse(authorKind0.content());
+      authorName = parsed.name;
+      authorPicture = parsed.picture;
+      authorNip05 = parsed.nip05;
+    } catch {
+      // ignore parse errors
+    }
+  }
+
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
-      <PostHeader pubkey={() => event.pubkey()} createdAt={() => event.createdAt()} />
+      <PostHeader
+        name={authorName}
+        pubkey={() => event.pubkey()}
+        picture={authorPicture}
+        nip05={authorNip05}
+        createdAt={() => event.createdAt()}
+      />
       <view className="mt-1 pl-10" bindtap={onPress}>
         {isPicture ? (
           <PostPicture note={event} />
