@@ -1,6 +1,6 @@
-import { view, text, scrollView, image } from '@lynx-js/react';
+import { view, text, image, list } from '@lynx-js/react';
 import { go } from '../../lib/navigation.js';
-import { PostCardFromEvent } from '../../components/PostCard.js';
+import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js';
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
 
 export function ExploreView() {
@@ -29,43 +29,54 @@ export function ExploreView() {
       </view>
 
       {/* Feed */}
-      <scrollView
+      <list
         className="flex-1"
         bindscrolltolower={onNearBottom}
         refresher-enabled={true}
         bindrefresherrefresh={onRefresh}
         refresher-triggered={refreshing}
       >
-        <view className="pb-4">
-          {loading && events.length === 0 && (
+        {loading && events.length === 0 && (
+          <list-item key="loading" item-key="loading" estimated-main-axis-size-px={100}>
             <view className="py-12 flex flex-col items-center justify-center">
               <text className="text-white/60 text-sm">Loading posts…</text>
             </view>
-          )}
+          </list-item>
+        )}
 
-          {!loading && events.length === 0 && (
+        {!loading && events.length === 0 && (
+          <list-item key="empty" item-key="empty" estimated-main-axis-size-px={100}>
             <view className="py-12 flex flex-col items-center justify-center">
               <text className="text-white/60 text-sm">No posts yet</text>
             </view>
-          )}
+          </list-item>
+        )}
 
-          {events.map((event) => (
-            <PostCardFromEvent key={event.id()} event={event} />
-          ))}
+        {events.map((event) => (
+          <list-item key={event.id()} item-key={event.id()} estimated-main-axis-size-px={300}>
+            <PostCardFromEvent
+              event={event}
+              onPress={() => go('note', { event: serializeEvent(event) })}
+            />
+          </list-item>
+        ))}
 
-          {loading && hasMore && events.length > 0 && (
+        {loading && hasMore && events.length > 0 && (
+          <list-item key="loading-more" item-key="loading-more" estimated-main-axis-size-px={50}>
             <view className="py-6 flex flex-col items-center justify-center">
               <text className="text-white/40 text-sm">Loading more…</text>
             </view>
-          )}
+          </list-item>
+        )}
 
-          {!loading && !hasMore && events.length > 0 && (
+        {!loading && !hasMore && events.length > 0 && (
+          <list-item key="no-more" item-key="no-more" estimated-main-axis-size-px={50}>
             <view className="py-6 flex flex-col items-center justify-center">
               <text className="text-white/40 text-sm">No more posts</text>
             </view>
-          )}
-        </view>
-      </scrollView>
+          </list-item>
+        )}
+      </list>
 
       {/* Floating post button */}
       <view

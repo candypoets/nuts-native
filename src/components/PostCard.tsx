@@ -1,9 +1,42 @@
 import { view } from '@lynx-js/react';
-import { PostHeader } from './posts/PostHeader';
-import { PostFooter } from './posts/PostFooter';
-import { ContentBlocks } from './posts/ContentBlocks';
-import { PostPicture } from './posts/PostPicture';
+import { PostHeader } from './posts/PostHeader.js';
+import { PostFooter } from './posts/PostFooter.js';
+import { ContentBlocks } from './posts/ContentBlocks.js';
+import { PostPicture } from './posts/PostPicture.js';
+import { ImageGrid } from './posts/ImageGrid.js';
+import { PollCard } from './posts/PollCard.js';
+import { ArticleCard } from './posts/ArticleCard.js';
+import { LiveCard } from './posts/LiveCard.js';
 import { go } from '../lib/navigation.js';
+
+const imageRegex = /https?:\/\/[^\s]+\.(?:jpg|jpeg|png|gif|webp|avif|bmp|svg)(?:\?[^\s]*)?/gi;
+
+function extractImageUrls(text: string): string[] {
+  const urls: string[] = [];
+  let match: RegExpExecArray | null;
+  while ((match = imageRegex.exec(text)) !== null) {
+    urls.push(match[0]);
+  }
+  return urls;
+}
+
+export function serializeEvent(event: {
+  id(): string;
+  kind(): number;
+  pubkey(): string;
+  content(): string;
+  createdAt(): number;
+  tags(): string[][];
+}) {
+  return {
+    id: event.id(),
+    kind: event.kind(),
+    pubkey: event.pubkey(),
+    content: event.content(),
+    createdAt: event.createdAt(),
+    tags: event.tags(),
+  };
+}
 
 export function PostCard({
   name,
@@ -18,6 +51,7 @@ export function PostCard({
   createdAt: number;
   picture?: string;
 }) {
+  const images = extractImageUrls(content);
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
       <PostHeader name={name} pubkey={pubkey} picture={picture} createdAt={createdAt} />
@@ -25,9 +59,16 @@ export function PostCard({
         <ContentBlocks
           content={content}
           collapsible={true}
-          onHashtag={() => go('explore')}
+          onHashtag={(tag) => go('tags', { tag: tag.slice(1) })}
           onLink={(url: string) => console.log('open link', url)}
+          onMention={(mention) => go('user', { pubkey: mention })}
         />
+        {images.length > 0 && (
+          <ImageGrid
+            urls={images}
+            onImageTap={(idx) => go('zoom', { url: images[idx], urls: images, index: idx })}
+          />
+        )}
       </view>
       <view className="pl-10">
         <PostFooter />
@@ -38,6 +79,7 @@ export function PostCard({
 
 export function PostCardFromEvent({
   event,
+  onPress,
 }: {
   event: {
     id(): string;
@@ -47,22 +89,44 @@ export function PostCardFromEvent({
     createdAt(): number;
     tags(): string[][];
   };
+  onPress?: () => void;
 }) {
-  const isPicture = event.kind() === 20;
+  const kind = event.kind();
+  const isPicture = kind === 20;
+  const isPoll = kind === 1068;
+  const isArticle = kind === 30023;
+  const isLive = kind === 1311;
+  const contentText = event.content();
+  const images = !isPicture ? extractImageUrls(contentText) : [];
 
   return (
     <view className="w-feed px-2 py-3 border-b border-white/10">
       <PostHeader pubkey={() => event.pubkey()} createdAt={() => event.createdAt()} />
-      <view className="mt-1 pl-10">
+      <view className="mt-1 pl-10" bindtap={onPress}>
         {isPicture ? (
           <PostPicture note={event} />
+        ) : isPoll ? (
+          <PollCard note={event} />
+        ) : isArticle ? (
+          <ArticleCard note={event} />
+        ) : isLive ? (
+          <LiveCard note={event} onLink={(url: string) => console.log('open link', url)} />
         ) : (
-          <ContentBlocks
-            content={() => event.content()}
-            collapsible={true}
-            onHashtag={() => go('explore')}
-            onLink={(url: string) => console.log('open link', url)}
-          />
+          <>
+            <ContentBlocks
+              content={() => event.content()}
+              collapsible={true}
+              onHashtag={(tag) => go('tags', { tag: tag.slice(1) })}
+              onLink={(url: string) => console.log('open link', url)}
+              onMention={(mention) => go('user', { pubkey: mention })}
+            />
+            {images.length > 0 && (
+              <ImageGrid
+                urls={images}
+                onImageTap={(idx) => go('zoom', { url: images[idx], urls: images, index: idx })}
+              />
+            )}
+          </>
         )}
       </view>
       <view className="pl-10">

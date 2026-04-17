@@ -44,6 +44,7 @@ const lynxConfig = defineConfig({
       kind1111: './src/pages/kind1111/index.tsx',
       zoom: './src/pages/zoom/index.tsx',
       testbuild: './src/pages/test-build/index.tsx',
+      tags: './src/pages/tags/index.tsx',
     },
   },
   output: {
@@ -185,10 +186,13 @@ const config: AppConfig = {
       path: './lynxPages/kind1111',
     },
     zoom: {
-      path: './lynxPages/testbuild',
+      path: './lynxPages/zoom',
     },
     testbuild: {
-      path: './lynxPages/zoom',
+      path: './lynxPages/testbuild',
+    },
+    tags: {
+      path: './lynxPages/tags',
     },
   },
   plugin: [
