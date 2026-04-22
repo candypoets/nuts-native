@@ -52,9 +52,9 @@ function MainApp() {
       */}
       <BackgroundWrapper>
         <view className="flex-1 overflow-hidden flex flex-col">
-          {tab === 'home' && <HomeView />}
-          {tab === 'explore' && <ExploreView />}
-          {tab === 'chat' && <ChatView />}
+          {tab === 'home' && <view key="home-tab" className="flex-1 flex flex-col"><HomeView /></view>}
+          {tab === 'explore' && <view key="explore-tab" className="flex-1 flex flex-col"><ExploreView /></view>}
+          {tab === 'chat' && <view key="chat-tab" className="flex-1 flex flex-col"><ChatView /></view>}
         </view>
 
         <view className="h-16 bg-black/40 flex flex-row border-t border-white/10">

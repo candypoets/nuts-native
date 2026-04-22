@@ -53,6 +53,9 @@ const lynxConfig = defineConfig({
       bundle: '[name].lynx.bundle'
     },
   },
+  server: {
+    port: 3002,
+  },
   plugins: [
     pluginQRCode({
       schema(url: string): string {

@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         ndk {
-            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86_64"))
         }
         buildTypes {
             release {
@@ -30,11 +30,11 @@ android {
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_11
-            targetCompatibility = JavaVersion.VERSION_11
+            sourceCompatibility = JavaVersion.VERSION_17
+            targetCompatibility = JavaVersion.VERSION_17
         }
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = "17"
         }
 
         // Default integrate assets from dist; switch to native assets when env is set
@@ -74,7 +74,9 @@ android {
 
         // BEGIN SPARKLING AUTOLINK
         listOf(
-            project(":sparkling-navigation")
+            project(":sparkling-media"),
+            project(":sparkling-navigation"),
+            project(":sparkling-storage")
         ).forEach { dep -> add("implementation", dep) }
         // END SPARKLING AUTOLINK
     }
