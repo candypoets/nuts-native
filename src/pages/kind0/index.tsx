@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 import { useSignEvent, getKind0, kind0Cache, ParsedData } from '../../lib/nipworker-mock.js';
 import type { ParsedEvent } from '../../lib/nipworker-mock.js';
 
@@ -127,7 +128,7 @@ function Page() {
   );
 
   return (
-    <PageShell title="Edit Profile">
+      <PageShell title="Edit Profile">
       <view className="flex flex-col gap-4">
         <Field label="Name" value={name} onChange={setName} placeholder="Your display name" />
         <Field label="About" value={about} onChange={setAbout} placeholder="Short bio" />
@@ -157,8 +158,8 @@ function Page() {
           )}
         </view>
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

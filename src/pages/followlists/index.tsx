@@ -4,6 +4,7 @@ import { root, view, text, input, image } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 import { getKind0, getKind3 } from '../../lib/nipworker-mock.js';
 
 function Page() {
@@ -21,7 +22,7 @@ function Page() {
   }, [key?.pub, kind3Ready, resolveKind3]);
 
   return (
-    <PageShell title="Feed Builder">
+      <PageShell title="Feed Builder">
       {/* Tabs */}
       <view className="mt-4 flex flex-row gap-2">
         <view
@@ -101,8 +102,8 @@ function Page() {
           );
         })}
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

@@ -1,0 +1,91 @@
+{
+  "bundle": "kind0",
+  "timestamp": "2026-04-22T12:00:16.483Z",
+  "screenshot": "web-host/verify-kind0.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core.",
+    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')"
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Edit Profile.NameAboutPicture URLBanner URLNIP-05Lightning AddressWebsiteSave",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Edit Profile.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Edit Profile",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "NameAboutPicture URLBanner URLNIP-05Lightning AddressWebsiteSave",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "NameAboutPicture URLBanner URLNIP-05Lightning AddressWebsite",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Name",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "About",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Picture URL",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Banner URL",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "NIP-05",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Lightning Address",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Website",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Save",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}

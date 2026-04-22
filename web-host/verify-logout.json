@@ -1,0 +1,66 @@
+{
+  "bundle": "logout",
+  "timestamp": "2026-04-22T12:00:22.408Z",
+  "screenshot": "web-host/verify-logout.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core.",
+    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')"
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Logout.⚠️Make sure you saved your private key before logging outLog Out",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Logout.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Logout",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "⚠️Make sure you saved your private key before logging outLog Out",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "⚠️Make sure you saved your private key before logging out",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "⚠️",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Make sure you saved your private key before logging out",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Log Out",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}

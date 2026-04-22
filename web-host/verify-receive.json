@@ -1,7 +1,7 @@
 {
-  "bundle": "note",
-  "timestamp": "2026-04-22T11:59:46.846Z",
-  "screenshot": "web-host/verify-note.png",
+  "bundle": "receive",
+  "timestamp": "2026-04-22T12:00:46.111Z",
+  "screenshot": "web-host/verify-receive.png",
   "logs": [
     "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
     "[error] NYI: profileStart. This is an issue of lynx-core.",
@@ -11,12 +11,12 @@
   "elements": [
     {
       "tag": "div",
-      "text": "←Note.Note not found",
+      "text": "←Receive.Paste eCash token or Lightning invoiceReceive",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "←Note.",
+      "text": "←Receive.",
       "visible": true
     },
     {
@@ -26,7 +26,7 @@
     },
     {
       "tag": "x-text",
-      "text": "Note",
+      "text": "Receive",
       "visible": true
     },
     {
@@ -36,7 +36,12 @@
     },
     {
       "tag": "x-view",
-      "text": "Note not found",
+      "text": "Paste eCash token or Lightning invoiceReceive",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Paste eCash token or Lightning invoice",
       "visible": true
     }
   ],

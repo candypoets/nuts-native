@@ -5,6 +5,7 @@ import QRCode from 'qrcode';
 import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 
 function Page() {
   const { key } = useStores();
@@ -23,7 +24,7 @@ function Page() {
   }, [key?.npub]);
 
   return (
-    <PageShell title="QR Code">
+      <PageShell title="QR Code">
       <view className="py-8 flex flex-col items-center justify-center">
         <text className="text-white font-semibold text-lg">Your Profile QR</text>
         <text className="text-white/60 text-sm mt-1">Scan to view your profile</text>
@@ -53,8 +54,8 @@ function Page() {
           <text className="text-white font-medium">Done</text>
         </view>
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

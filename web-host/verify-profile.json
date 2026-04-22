@@ -1,6 +1,6 @@
 {
   "bundle": "profile",
-  "timestamp": "2026-04-22T11:53:36.875Z",
+  "timestamp": "2026-04-22T11:59:58.650Z",
   "screenshot": "web-host/verify-profile.png",
   "logs": [
     "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",

@@ -4,6 +4,7 @@ import { view, text, image } from '@lynx-js/react';
 import { useState } from 'react';
 import { PageShell } from '../../components/PageShell.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 
 function Page() {
   const { key, kind0 } = useStores();
@@ -27,7 +28,7 @@ function Page() {
   const nsec = key?.nsec || '';
 
   return (
-    <PageShell title="Keys">
+      <PageShell title="Keys">
       <view className="flex flex-col">
         <text className="text-white/80 text-sm mb-2">Your public key</text>
         <view className="flex flex-row p-4 bg-white/10 my-2 rounded-xl items-center">
@@ -72,8 +73,8 @@ function Page() {
           Warning: Keep your private key secret. Anyone with your private key can access your account.
         </text>
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

@@ -1,0 +1,77 @@
+{
+  "bundle": "keys",
+  "timestamp": "2026-04-22T12:00:10.565Z",
+  "screenshot": "web-host/verify-keys.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core.",
+    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')"
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Keys.Your public key✅ CopiedAnyone on Nostr can find you via your public key. Feel free to share it",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Keys.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Keys",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Your public key✅ CopiedAnyone on Nostr can find you via your public key. Feel free to share it with ",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Your public key",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "✅ Copied",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Anyone on Nostr can find you via your public key. Feel free to share it with others.",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Your private key",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔑",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Warning: Keep your private key secret. Anyone with your private key can access your account.",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}

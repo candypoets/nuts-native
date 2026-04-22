@@ -3,6 +3,7 @@ import { root } from '@lynx-js/react';
 import { view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 import { go } from '../../lib/navigation.js';
 
 function Page() {
@@ -16,7 +17,7 @@ function Page() {
   }
 
   return (
-    <PageShell title="Logout">
+      <PageShell title="Logout">
       <view className="flex flex-col gap-4 justify-center px-6 py-12">
         <view className="text-center font-semibold p-3 border border-yellow-100/30 rounded-lg flex flex-row items-center justify-center">
           <text className="text-xl mr-2">⚠️</text>
@@ -29,8 +30,8 @@ function Page() {
           <text className="text-white font-semibold text-lg">Log Out</text>
         </view>
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

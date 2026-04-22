@@ -1,24 +1,22 @@
 {
-  "bundle": "user",
-  "timestamp": "2026-04-22T11:59:52.736Z",
-  "screenshot": "web-host/verify-user.png",
+  "bundle": "send",
+  "timestamp": "2026-04-22T12:00:40.159Z",
+  "screenshot": "web-host/verify-send.png",
   "logs": [
     "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
-    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
     "[error] NYI: profileStart. This is an issue of lynx-core.",
     "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
-    "[error] NYI: profileEnd. This is an issue of lynx-core.",
-    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')"
+    "[error] NYI: profileEnd. This is an issue of lynx-core."
   ],
   "elements": [
     {
       "tag": "div",
-      "text": "←User....0Posts0Followers0FollowingFollowMessagePostsRepliesMediaLikesNo posts yet",
+      "text": "←Send Money.⚡Tap cashOffline instant payment›⚡Pay an invoicePay out with lightning›Enter amount to s",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "←User.",
+      "text": "←Send Money.",
       "visible": true
     },
     {
@@ -28,7 +26,7 @@
     },
     {
       "tag": "x-text",
-      "text": "User",
+      "text": "Send Money",
       "visible": true
     },
     {
@@ -38,97 +36,97 @@
     },
     {
       "tag": "x-view",
-      "text": "...0Posts0Followers0FollowingFollowMessagePostsRepliesMediaLikesNo posts yet",
+      "text": "⚡Tap cashOffline instant payment›⚡Pay an invoicePay out with lightning›Enter amount to sendContactsC",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "...0Posts0Followers0FollowingFollowMessage",
+      "text": "⚡Tap cashOffline instant payment›⚡Pay an invoicePay out with lightning›",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "...",
+      "text": "⚡Tap cashOffline instant payment›",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "0Posts0Followers0Following",
-      "visible": true
-    },
-    {
-      "tag": "x-view",
-      "text": "0Posts",
+      "text": "⚡Tap cashOffline instant payment",
       "visible": true
     },
     {
       "tag": "x-text",
-      "text": "0",
+      "text": "⚡",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Tap cashOffline instant payment",
       "visible": true
     },
     {
       "tag": "x-text",
-      "text": "Posts",
-      "visible": true
-    },
-    {
-      "tag": "x-view",
-      "text": "0Followers",
+      "text": "Tap cash",
       "visible": true
     },
     {
       "tag": "x-text",
-      "text": "Followers",
-      "visible": true
-    },
-    {
-      "tag": "x-view",
-      "text": "0Following",
+      "text": "Offline instant payment",
       "visible": true
     },
     {
       "tag": "x-text",
-      "text": "Following",
+      "text": "›",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "FollowMessage",
+      "text": "⚡Pay an invoicePay out with lightning›",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "Follow",
+      "text": "⚡Pay an invoicePay out with lightning",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "Message",
+      "text": "Pay an invoicePay out with lightning",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Pay an invoice",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Pay out with lightning",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "PostsRepliesMediaLikes",
+      "text": "Enter amount to send",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "Replies",
+      "text": "ContactsContact list coming soon",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Contacts",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "Media",
+      "text": "Contact list coming soon",
       "visible": true
     },
     {
       "tag": "x-view",
-      "text": "Likes",
-      "visible": true
-    },
-    {
-      "tag": "x-view",
-      "text": "No posts yet",
+      "text": "Send",
       "visible": true
     }
   ],

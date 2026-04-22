@@ -7,6 +7,7 @@ import { getItem, setItem } from '../../stores/storage.js';
 import { go } from '../../lib/navigation.js';
 import { useUserProfile } from '../../hooks/useUserProfile.js';
 import { useStores } from '../../stores/StoreContext.js';
+import { StoreProvider } from '../../stores/StoreContext.js';
 import { subscribeToEvents, isParsedEvent, asKind1, useSignEvent, getKind3, kind3Cache, getFollows, ParsedData, type ParsedEvent, type WorkerMessage } from '../../lib/nipworker-mock.js';
 
 const TABS = ['Posts', 'Replies', 'Media', 'Likes'] as const;
@@ -154,7 +155,7 @@ function Page() {
   }, [pubkey]);
 
   return (
-    <PageShell title="User">
+      <PageShell title="User">
       <view className="flex flex-col -mx-4 -mt-4">
         {/* Banner */}
         <view className="w-full h-32 relative">
@@ -294,8 +295,8 @@ function Page() {
           )}
         </view>
       </view>
-    </PageShell>
+      </PageShell>
   );
 }
 
-root.render(<Page />);
+root.render(<StoreProvider><Page /></StoreProvider>);

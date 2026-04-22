@@ -1,0 +1,75 @@
+{
+  "bundle": "cmdk",
+  "timestamp": "2026-04-22T12:00:52.071Z",
+  "screenshot": "web-host/verify-cmdk.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core."
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Command Palette.🔍ProfilesHashtags🔍Start typing to search profiles",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Command Palette.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Command Palette",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔍ProfilesHashtags🔍Start typing to search profiles",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔍",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "ProfilesHashtags",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Profiles",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Hashtags",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔍Start typing to search profiles",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Start typing to search profiles",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}
