@@ -19,6 +19,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         
         SPKServiceRegister.registerAll()
         SPKExecuteAllPrepareBootTask()
+        // Swift 6 / Xcode 26 workaround: @_section/@_used pre-registration fails,
+        // so we manually call the prepare tasks that would normally be discovered
+        // via the __DATA,SPK_PRE_SVC Mach-O section.
+        SPKLynxService.executePrepareServiceTask()
+        SPKResourceLoaderImpl.executePrepareServiceTask()
         SPKKit.DIContainer.register(SPKTrackerService.self, scope: ServiceScope.transient) {
             SparklingGoTrackerService()
         }

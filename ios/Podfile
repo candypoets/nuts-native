@@ -23,6 +23,8 @@ end
 def sparkling_methods_dep
   # BEGIN SPARKLING AUTOLINK
   pod 'Sparkling-Router', :path => '../node_modules/sparkling-navigation/ios'
+  pod 'Sparkling-Storage', :path => '../node_modules/sparkling-storage/ios'
+  pod 'ios', :path => '../node_modules/sparkling-media'
   # END SPARKLING AUTOLINK
 end
 

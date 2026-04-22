@@ -1,6 +1,6 @@
 // Original: /root/code/nuts-cash/src/routes/chat/index.svelte (Chat tab content)
 // Note: See also src/routes/chat/empty.svelte for empty state
-import { view, text, scrollView, image, input } from '@lynx-js/react';
+import { view, text, image, input } from '@lynx-js/react';
 import { useState } from 'react';
 import { go, goSub, goModal } from '../../lib/navigation.js';
 
@@ -180,7 +180,7 @@ export function ChatView() {
       </view>
 
       {/* Content */}
-      <scrollView className="flex-1 px-4 pb-4">
+      <view className="flex-1 px-4 pb-4">
         {!hasItems ? (
           <view className="pt-8">
             <EmptyState />
@@ -192,7 +192,7 @@ export function ChatView() {
             ))}
           </view>
         )}
-      </scrollView>
+      </view>
     </view>
   );
 }

@@ -332,7 +332,7 @@ export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <view
-      className="w-full h-full"
+      className="w-full h-full flex flex-col"
       style={bgStyle}
     >
       {children}

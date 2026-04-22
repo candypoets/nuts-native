@@ -19,6 +19,22 @@ module.exports = {
 	content: ['./src/**/*.{tsx,ts,html}'],
 	theme: {
 		extend: {
+			colors: {
+				primary: 'var(--primary)',
+				'primary-content': 'var(--primary-content)',
+				secondary: 'var(--secondary)',
+				'secondary-content': 'var(--secondary-content)',
+				'base-100': 'var(--base-100)',
+				'base-200': 'var(--base-200)',
+				'base-300': 'var(--base-300)',
+				accent: 'var(--accent)',
+				neutral: 'var(--neutral)',
+				info: 'var(--info)',
+				success: 'var(--success)',
+				warning: 'var(--warning)',
+				error: 'var(--error)',
+				highlight: 'var(--highlight)',
+			},
 			fontFamily: {
 				sans: ["Suisse Int'l", 'ui-sans-serif', 'system-ui']
 			},

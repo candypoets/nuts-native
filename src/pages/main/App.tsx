@@ -51,7 +51,7 @@ function MainApp() {
         - For sub: slides left 20%, scales to 0.95, dims slightly
       */}
       <BackgroundWrapper>
-        <view className="flex-1 overflow-hidden">
+        <view className="flex-1 overflow-hidden flex flex-col">
           {tab === 'home' && <HomeView />}
           {tab === 'explore' && <ExploreView />}
           {tab === 'chat' && <ChatView />}
