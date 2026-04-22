@@ -23,7 +23,7 @@ export function PostFooter({
   onZap?: () => void;
 }) {
   return (
-    <view className="flex flex-row gap-6 mt-3">
+    <view className="flex flex-row items-center gap-4 mt-2 h-6">
       <view
         className="flex flex-row items-center gap-1"
         bindtap={() => {
@@ -31,7 +31,7 @@ export function PostFooter({
           onReply?.();
         }}
       >
-        <text className="text-white/50">💬</text>
+        <text className="text-sm text-white/50">💬</text>
         {replyCount > 0 ? (
           <text className="text-xs text-white/50">{replyCount}</text>
         ) : null}
@@ -44,7 +44,7 @@ export function PostFooter({
           onRepost?.();
         }}
       >
-        <text className="text-white/50">🔄</text>
+        <text className="text-sm text-white/50">🔄</text>
         {repostCount > 0 ? (
           <text className="text-xs text-white/50">{repostCount}</text>
         ) : null}
@@ -56,7 +56,7 @@ export function PostFooter({
           onLike?.();
         }}
       >
-        <text className={liked ? 'text-accent' : 'text-white/50'}>❤️</text>
+        <text className={liked ? 'text-sm text-accent' : 'text-sm text-white/50'}>❤️</text>
         {reactionCount > 0 ? (
           <text className={liked ? 'text-xs text-accent' : 'text-xs text-white/50'}>
             {reactionCount}
@@ -71,8 +71,10 @@ export function PostFooter({
           onShare?.();
         }}
       >
-        <text className="text-white/50">↗️</text>
+        <text className="text-sm text-white/50">↗️</text>
       </view>
+
+      <view className="flex-1" />
 
       <view
         className="flex flex-row items-center gap-1"
@@ -81,7 +83,7 @@ export function PostFooter({
           onZap?.();
         }}
       >
-        <text className="text-white/50">⚡</text>
+        <text className="text-sm text-white/50">⚡</text>
       </view>
     </view>
   );
