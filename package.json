@@ -38,6 +38,7 @@
     "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10.5.0",
     "jsdom": "^28.0.0",
+    "patch-package": "^8.0.1",
     "postcss": "^8.5.10",
     "prettier": "^3.8.1",
     "sparkling-app-cli": "~2.0.1",
@@ -63,6 +64,7 @@
     "screenshot:chat": "node scripts/screenshot-web.mjs ./web-host/screenshot-chat.png chat",
     "verify": "node scripts/verify-page.mjs",
     "verify:main": "node scripts/verify-page.mjs main ./web-host",
-    "verify:all": "for b in main explore chat note user profile followlists keys kind0 logout qr post send receive cmdk; do echo \"=== $$b ===\"; node scripts/verify-page.mjs $$b ./web-host | grep -E 'Passed:|Visible elements:'; done"
+    "verify:all": "for b in main explore chat note user profile followlists keys kind0 logout qr post send receive cmdk; do echo \"=== $$b ===\"; node scripts/verify-page.mjs $$b ./web-host | grep -E 'Passed:|Visible elements:'; done",
+    "postinstall": "patch-package"
   }
 }

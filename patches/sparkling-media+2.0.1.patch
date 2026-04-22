@@ -1,0 +1,14 @@
+diff --git a/node_modules/sparkling-media/module.config.json b/node_modules/sparkling-media/module.config.json
+index 50f9fa3..4aed5e0 100644
+--- a/node_modules/sparkling-media/module.config.json
++++ b/node_modules/sparkling-media/module.config.json
+@@ -2,5 +2,8 @@
+   "packageName": "com.tiktok.sparkling.method",
+   "moduleName": "Media",
+   "androidDsl": "kts",
+-  "projectName": "sparkling-media"
++  "projectName": "sparkling-media",
++  "ios": {
++    "podspecPath": "ios/Sparkling-Media.podspec"
++  }
+ }
