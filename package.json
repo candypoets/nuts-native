@@ -48,9 +48,14 @@
   "private": false,
   "scripts": {
     "build": "sparkling-app-cli build --copy",
+    "build:web": "rspeedy build --config web-preview.config.ts --environment web",
     "autolink": "sparkling-app-cli autolink",
     "test": "vitest run --passWithNoTests",
     "run:android": "sparkling-app-cli run:android",
-    "run:ios": "sparkling-app-cli run:ios --copy"
+    "run:ios": "sparkling-app-cli run:ios --copy",
+    "screenshot": "node scripts/screenshot-web.mjs",
+    "screenshot:main": "node scripts/screenshot-web.mjs ./web-host/screenshot-main.png main",
+    "screenshot:explore": "node scripts/screenshot-web.mjs ./web-host/screenshot-explore.png explore",
+    "screenshot:chat": "node scripts/screenshot-web.mjs ./web-host/screenshot-chat.png chat"
   }
 }
