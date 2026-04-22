@@ -14,14 +14,14 @@
 	--tw-ring-offset-shadow: 0 0 #0000;
 	--tw-ring-shadow: 0 0 #0000;
 
-	--primary: #158777;
-	--primary-content: #9b9ea4;
+	--primary: #1fb092;
+	--primary-content: #a0a0a0;
 	--secondary: #D926AA;
 	--secondary-content: #c1cad6;
-	--base-100: #131716;
+	--base-100: #333333;
 	--base-200: #1a1a1a;
-	--base-300: #1f2937;
-	--accent: #6d28d9;
+	--base-300: #262626;
+	--accent: #a855f7;
 	--neutral: #2a323c;
 	--info: #00b5ff;
 	--success: #00a96e;
@@ -29,8 +29,8 @@
 	--error: #ff5861;
 	--highlight: #ffffff;
 
-	--shadow-outer-color: rgba(0, 0, 0, 0.15);
-	--shadow-inset-highlight: rgba(255, 255, 255, 0.3);
+	--shadow-outer-color: rgba(0, 0, 0, 0.6);
+	--shadow-inset-highlight: rgba(255, 255, 255, 0.05);
 	--shadow-inset-subtle: rgba(255, 255, 255, 0.08);
 
 	--bg-basic: url('asset:///touchgrass.jpg');
@@ -56,9 +56,9 @@ html[data-theme='matteblack'] {
 	--bg-basic: url('asset:///');
 	--primary: #1fb092;
 	--primary-content: #a0a0a0;
-	--base-100: #333333;
-	--base-200: #1a1a1a;
-	--base-300: #262626;
+	--base-100: #0a0a0a;
+	--base-200: #111111;
+	--base-300: #1e1e1e;
 	--accent: #a855f7;
 	--shadow-outer-color: rgba(0, 0, 0, 0.6);
 	--shadow-inset-highlight: rgba(255, 255, 255, 0.05);
@@ -311,4 +311,17 @@ html[data-theme='sunset'] {
 	100% {
 		transform: translateY(0);
 	}
+}
+
+.shadow-widget {
+	box-shadow: 0px 2px 3px 0px var(--shadow-outer-color), 0 1px 0 0 var(--shadow-inset-highlight) inset, 1px 0 0 0 var(--shadow-inset-subtle) inset, -1px 0 0 0 var(--shadow-inset-subtle) inset;
+}
+
+.shadow-widget-down {
+	box-shadow: 2px 2px 3px 0px var(--shadow-outer-color), 0 -1px 0 0 var(--shadow-inset-highlight) inset, 1px 0 0 0 var(--shadow-inset-subtle) inset, -1px 0 0 0 var(--shadow-inset-subtle) inset;
+}
+
+.backdrop-blur-gpu {
+	-webkit-backdrop-filter: blur(12px);
+	backdrop-filter: blur(12px);
 }

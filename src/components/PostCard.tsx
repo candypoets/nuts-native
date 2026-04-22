@@ -54,7 +54,7 @@ export function PostCard({
 }) {
   const images = extractImageUrls(content);
   return (
-    <view className="w-feed px-2 py-3 border-b border-white/10">
+    <view className="w-full py-2 mt-1 rounded-lg bg-base-300 bg-opacity-85 shadow-widget">
       <PostHeader name={name} pubkey={pubkey} picture={picture} createdAt={createdAt} />
       <view className="mt-1 pl-10">
         <ContentBlocks
@@ -116,7 +116,7 @@ export function PostCardFromEvent({
   }
 
   return (
-    <view className="w-feed px-2 py-3 border-b border-white/10">
+    <view className="w-full py-2 px-3 mt-1 rounded-lg bg-base-300 bg-opacity-85 shadow-widget">
       <PostHeader
         name={authorName}
         pubkey={() => event.pubkey()}

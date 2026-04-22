@@ -12,17 +12,17 @@ export function ExploreView() {
   const { unreadCount } = useStores();
 
   return (
-    <view className="flex-1 bg-base-300 flex flex-col">
+    <view className="mobile-height bg-base-100 flex flex-col">
       {/* Sticky Header */}
-      <view className="flex justify-between h-16 items-center px-4 pt-4 border-b border-white/10 bg-base-300">
+      <view className="flex justify-between h-16 items-center px-4 pt-4 border-b border-base-200 bg-base-300 bg-opacity-80">
         <view className="flex gap-2 items-center">
-          <view className="w-8 h-8 border rounded-full flex items-center justify-center" bindtap={() => pushModal('followlists')}>
-            <text className="text-lg">∞</text>
+          <view className="w-8 h-8 border border-white/20 rounded-full flex items-center justify-center" bindtap={() => pushModal('followlists')}>
+            <text className="text-lg text-white">∞</text>
           </view>
         </view>
         <view className="flex gap-3 items-center">
           <view className="relative" bindtap={() => pushModal('notifications')}>
-            <text className="text-2xl">🔔</text>
+            <text className="text-2xl text-white">🔔</text>
             {unreadCount > 0 && (
               <view className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500" />
             )}
@@ -36,9 +36,9 @@ export function ExploreView() {
         </view>
       </view>
 
-      {/* Feed — using plain view instead of scrollView due to Lynx flex layout issue */}
+      {/* Feed Container — matches web explore layout */}
       <view className="flex-1 flex flex-col">
-        <view className="flex-1">
+        <view className="flex-1 bg-base-300 rounded-lg pb-1 px-1 shadow-widget-down">
           {loading && events.length === 0 && (
             <view className="py-12 flex flex-col items-center justify-center">
               <text className="text-white/60 text-sm">Loading posts…</text>
