@@ -1,3 +1,4 @@
+// Original: Template file (no direct equivalent in nuts-cash)
 import { useCallback, useEffect } from '@lynx-js/react'
 
 import { close } from 'sparkling-navigation'

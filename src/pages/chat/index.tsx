@@ -1,4 +1,6 @@
-import { root, view, text, image, scrollView } from '@lynx-js/react';
+// Original: /root/code/nuts-cash/src/routes/chat/index.svelte
+// Note: Also see src/routes/chat/empty.svelte for empty state UI
+import { root } from '@lynx-js/react';
 import { useState } from 'react';
 import '../../app.css';
 import { PageShell } from '../../components/PageShell.js';

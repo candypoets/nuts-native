@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/modals/_profile/index.svelte
+// Note: Full profile page, also see _profile/wallet.svelte and _profile/relays.svelte
 import { root } from '@lynx-js/react';
 import { view, text, image, input } from '@lynx-js/react';
 import { useState, useEffect } from 'react';

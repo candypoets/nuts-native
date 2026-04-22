@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/login.svelte
 import { root } from '@lynx-js/react';
 import { view, text, scrollView } from '@lynx-js/react';
 

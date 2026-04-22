@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/kinds/kind9735.svelte
 import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 

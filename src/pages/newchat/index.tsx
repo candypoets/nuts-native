@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/modals/newchat.svelte
+// Note: Also see src/routes/chat/empty.svelte for empty state
 import { root, view, text, input } from '@lynx-js/react';
 import { useState, useMemo } from 'react';
 import { PageShell } from '../../components/PageShell.js';

@@ -1,7 +1,10 @@
+// Original: /root/code/nuts-cash/src/routes/home/[...void]/+page.svelte (Home tab content)
+// Note: See also src/routes/home/components/mintcard.svelte and emptyWallet.svelte
 import { view, text, scrollView, image } from '@lynx-js/react';
 import { useStores } from '../../stores/StoreContext.js';
 import { EmptyWallet } from '../../components/EmptyWallet.js';
-import { go } from '../../lib/navigation.js';
+import { go, goSub } from '../../lib/navigation.js';
+import { pushModal } from '../../lib/overlay.js';
 
 export function HomeView() {
 	const { key, unreadCount } = useStores();
@@ -33,19 +36,19 @@ export function HomeView() {
 
 					{/* Action Buttons */}
 					<view className="flex lg:gap-8 gap-4 px-4 py-2 mt-2 w-feed m-auto">
-						<view className="text-center" bindtap={() => go('receive')}>
+						<view className="text-center" bindtap={() => pushModal('receive')}>
 							<view className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
 								<text className="text-2xl text-white">＋</text>
 							</view>
 							<text className="text-sm mt-1 font-semibold text-white">Receive</text>
 						</view>
-						<view className="text-center" bindtap={() => go('send')}>
+						<view className="text-center" bindtap={() => pushModal('send')}>
 							<view className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
 								<text className="text-2xl text-white">→</text>
 							</view>
 							<text className="text-sm mt-1 font-semibold text-white">Send</text>
 						</view>
-						<view className="text-center" bindtap={() => go('scan')}>
+						<view className="text-center" bindtap={() => pushModal('scan')}>
 							<view className="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center">
 								<text className="text-2xl text-white">📷</text>
 							</view>
@@ -60,7 +63,7 @@ export function HomeView() {
 					{!key?.pub ? (
 						<view className="py-8">
 							<text className="text-white text-center">Connect your Nostr key to see your wallet</text>
-							<view className="mt-4 mx-auto px-6 py-3 bg-accent rounded-xl w-fit" bindtap={() => go('login')}>
+							<view className="mt-4 mx-auto px-6 py-3 bg-accent rounded-xl w-fit" bindtap={() => goSub('login')}>
 								<text className="text-white font-semibold">Login</text>
 							</view>
 						</view>

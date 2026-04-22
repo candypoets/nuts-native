@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/followlists.svelte
 import { useState, useEffect } from 'react';
 import { root, view, text, input, image } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

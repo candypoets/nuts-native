@@ -1,3 +1,4 @@
+// Original: Template file (no direct equivalent in nuts-cash)
 import { root } from '@lynx-js/react'
 
 import { App } from './App.js'

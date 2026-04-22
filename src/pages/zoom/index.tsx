@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/components/ImageZoom.svelte
+// Note: Also see src/components/ImageZoomContext.svelte for context
 import { useState, useEffect } from 'react';
 import { root, view, text, image, scrollView } from '@lynx-js/react';
 import { getItem, setItem } from '../../stores/storage.js';

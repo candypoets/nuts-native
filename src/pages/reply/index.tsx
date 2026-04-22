@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/explore/reply.svelte
 import { root, view, text, image } from '@lynx-js/react';
 import { useState } from 'react';
 import { PageShell } from '../../components/PageShell.js';

@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/qr.svelte
 import { useState, useEffect } from 'react';
 import { root, view, text, image } from '@lynx-js/react';
 import QRCode from 'qrcode';

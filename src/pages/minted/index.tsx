@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/minted.svelte
 import { root } from '@lynx-js/react';
 import { view, text } from '@lynx-js/react';
 import '../../app.css';

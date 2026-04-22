@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/post.svelte (repost functionality)
 import { root, view, text, image, input } from '@lynx-js/react';
 import { useState } from 'react';
 import { PageShell } from '../../components/PageShell.js';

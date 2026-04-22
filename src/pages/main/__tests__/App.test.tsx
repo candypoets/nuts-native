@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/+page.svelte (main entry test)
 import '@testing-library/jest-dom'
 import { expect, test, vi } from 'vitest'
 import { render, getQueriesForElement } from '@lynx-js/react/testing-library'

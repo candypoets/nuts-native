@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/_profile/logout.svelte
 import { root } from '@lynx-js/react';
 import { view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

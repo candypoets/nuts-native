@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/explore/notifications.svelte
+// Note: Full notifications folder at src/routes/notifications/
 import { useState, useEffect } from 'react';
 import { root, view, text, scrollView } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

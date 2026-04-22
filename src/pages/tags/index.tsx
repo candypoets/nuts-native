@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/_kinds/tags.svelte
+// Note: Also used for hashtag display in explore feed
 import { useState, useEffect } from 'react';
 import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

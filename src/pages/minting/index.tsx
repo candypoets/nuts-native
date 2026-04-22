@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/modals/minting.svelte
+// Note: Also see src/routes/modals/topup.svelte for topup flow
 import { useState } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

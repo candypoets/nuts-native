@@ -1,6 +1,8 @@
+// Original: /root/code/nuts-cash/src/routes/chat/index.svelte (Chat tab content)
+// Note: See also src/routes/chat/empty.svelte for empty state
 import { view, text, scrollView, image, input } from '@lynx-js/react';
 import { useState } from 'react';
-import { go } from '../../lib/navigation.js';
+import { go, goSub, goModal } from '../../lib/navigation.js';
 
 
 type ChatListTab = 'messages' | 'requests' | 'groups';

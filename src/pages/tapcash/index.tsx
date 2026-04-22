@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/tapcash.svelte
 import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';

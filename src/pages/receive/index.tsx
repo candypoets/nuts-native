@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/_profile/login.svelte
 import { useState } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

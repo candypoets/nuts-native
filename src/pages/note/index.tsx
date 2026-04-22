@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/explore/note.svelte
+// Note: Also used in src/routes/_kinds/kind1.svelte for kind 1 notes
 import { useState, useEffect } from 'react';
 import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

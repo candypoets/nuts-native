@@ -1,3 +1,5 @@
+// Original: Command palette modal (no direct Svelte equivalent, new native feature)
+// Similar to search functionality in nuts-cash explore view
 import { useState } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

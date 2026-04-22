@@ -1,3 +1,5 @@
+// Original: /root/code/nuts-cash/src/routes/modals/_profile/kind0.svelte
+// Note: Also used by src/routes/_kinds/kind0.svelte
 import { useState, useEffect, useCallback } from 'react';
 import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';

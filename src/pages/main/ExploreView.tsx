@@ -1,5 +1,8 @@
+// Original: /root/code/nuts-cash/src/routes/explore/index.svelte (Explore tab content)
+// Note: See also src/routes/explore/feed.svelte, note.svelte, user.svelte
 import { view, text, image, list } from '@lynx-js/react';
-import { go } from '../../lib/navigation.js';
+import { go, goSub } from '../../lib/navigation.js';
+import { pushModal } from '../../lib/overlay.js';
 import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js';
 import { useExploreFeed } from '../../hooks/useExploreFeed.js';
 import { useStores } from '../../stores/StoreContext.js';
@@ -13,18 +16,18 @@ export function ExploreView() {
       {/* Sticky Header */}
       <view className="flex justify-between h-16 items-center px-4 pt-4 border-b border-white/10 bg-base-300 bg-opacity-85">
         <view className="flex gap-2 items-center">
-          <view className="w-8 h-8 border rounded-full flex items-center justify-center" bindtap={() => go('followlists')}>
+          <view className="w-8 h-8 border rounded-full flex items-center justify-center" bindtap={() => pushModal('followlists')}>
             <text className="text-lg">∞</text>
           </view>
         </view>
         <view className="flex gap-3 items-center">
-          <view className="relative" bindtap={() => go('notifications')}>
+          <view className="relative" bindtap={() => pushModal('notifications')}>
             <text className="text-2xl">🔔</text>
             {unreadCount > 0 && (
               <view className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500" />
             )}
           </view>
-          <view bindtap={() => go('profile')}>
+          <view bindtap={() => pushModal('profile')}>
             <image
               src="asset:///miss-profile.png"
               className="w-8 h-8 rounded-full border border-white/20"
@@ -61,7 +64,7 @@ export function ExploreView() {
           <list-item key={event.id()} item-key={event.id()} estimated-main-axis-size-px={300}>
             <PostCardFromEvent
               event={event}
-              onPress={() => go('note', { event: serializeEvent(event) })}
+              onPress={() => goSub('note', { event: serializeEvent(event) })}
             />
           </list-item>
         ))}
@@ -86,7 +89,7 @@ export function ExploreView() {
       {/* Floating post button */}
       <view
         className="absolute bottom-20 right-4 w-12 h-12 rounded-full bg-accent flex items-center justify-center shadow-lg"
-        bindtap={() => go('post')}
+        bindtap={() => openModal('post')}
       >
         <text className="text-white text-xl">✏️</text>
       </view>

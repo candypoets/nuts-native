@@ -1,3 +1,4 @@
+// Original: /root/code/nuts-cash/src/routes/modals/_profile/keys.svelte
 import { root } from '@lynx-js/react';
 import { view, text, image } from '@lynx-js/react';
 import { useState } from 'react';
