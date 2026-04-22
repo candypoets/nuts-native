@@ -18,7 +18,26 @@ This is a **brownfield iOS app** built with [Sparkling](https://sparkling.sh) (v
 
 ## Build & Run Workflow
 
-The `sparkling-app-cli` (`npm run run:ios`) is **broken** due to an autolinker bug. Use manual builds:
+### Quick Start (DEBUG — recommended for development)
+
+In DEBUG builds, the app loads bundles directly from the dev server. No rebuild needed for JS changes.
+
+**Terminal 1** — start the dev server (keep running):
+```bash
+npx rspeedy dev -c .sparkling/lynx.config.ts
+```
+
+**Terminal 2** — build and launch the iOS app:
+```bash
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+npm run run:ios
+```
+
+This runs autolink → pod install → build → install → launch automatically.
+
+### Production Build (manual)
+
+For RELEASE builds or when the dev server is not running:
 
 ```bash
 # 1. Build JS bundles
@@ -37,9 +56,6 @@ xcrun simctl install booted \
 
 # 4. Launch
 xcrun simctl launch booted com.nutscash.sparkling
-
-# 5. Screenshot (optional)
-xcrun simctl io booted screenshot /tmp/screenshot.png
 ```
 
 **Pro tip**: If `xcodebuild` fails with Ruby errors, ensure Ruby 3.3 is in PATH:
@@ -176,11 +192,50 @@ pushSub('note', { event });           // Sub overlay (pushes right)
 popOverlay();                         // Close top overlay
 ```
 
-## Testing Changes
+## Dev Server Workflow (DEBUG builds)
 
-After any JS/TS/CSS change:
-1. `npm run build`
-2. `cd ios && xcodebuild ...` (or skip if only JS changed — bundles are copied automatically)
+In DEBUG mode, the app loads `http://<your-ip>:3000/main.lynx.bundle` directly from the rspeedy dev server:
+
+```swift
+// ios/SparklingGo/SparklingGo/SparklingSwiftVC.swift
+#if DEBUG
+let url = "hybrid://lynxview_page?bundle=http://192.168.178.132:3000/main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
+#else
+let url = "hybrid://lynxview_page?bundle=main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
+#endif
+```
+
+### Reloading After Code Changes
+
+The dev server rebuilds bundles on file change (~3s), but the app does **not** auto-refresh. Use one of these methods:
+
+| Method | Command / Action | Time |
+|--------|-----------------|------|
+| **Shake to Reload** | `Cmd+Ctrl+Z` in Simulator (or Device → Shake) | ~1s |
+| **Quick Restart** | `./scripts/reload-ios.sh` | ~2s |
+| **Full Rebuild** | `npm run run:ios` | ~30s |
+
+**Shake-to-reload** is the fastest — it calls `container.reload(nil)` on the Sparkling view controller, which re-fetches the bundle from the dev server without restarting the app.
+
+### Lynx DevTool (DEBUG only)
+
+DevTool is enabled in DEBUG builds for element inspection and JS debugging:
+
+```swift
+// SparklingGoApp.swift
+#if DEBUG
+let lynxEnv = LynxEnv.sharedInstance()
+lynxEnv.lynxDebugEnabled = true
+lynxEnv.devtoolEnabled = true
+lynxEnv.logBoxEnabled = true
+#endif
+```
+
+Connect with [Lynx DevTool Desktop](https://github.com/lynx-family/lynx-devtool) for deep debugging.
+
+## Testing Changes (Production / Release)
+
+When NOT using the dev server:
+1. `npm run build` — builds bundles and copies them to `ios/SparklingGo/Resources/Assets/`
+2. `cd ios && xcodebuild ...` — build the iOS app
 3. `xcrun simctl install booted ... && xcrun simctl launch booted ...`
-
-For faster iteration, the Lynx DevTool can hot-reload, but it requires the app to connect to the DevTool server (currently disconnected in our setup).
