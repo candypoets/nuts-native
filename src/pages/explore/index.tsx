@@ -1,10 +1,15 @@
 // Original: /root/code/nuts-cash/src/routes/explore/index.svelte (standalone page version)
 // Note: Main explore feed is in src/pages/main/ExploreView.tsx
 import { root } from '@lynx-js/react';
+import { StoreProvider } from '../../stores/StoreContext.js';
 import { ExploreView } from '../main/ExploreView.js';
 
 function Page() {
-  return <ExploreView />;
+  return (
+    <StoreProvider>
+      <ExploreView />
+    </StoreProvider>
+  );
 }
 
 root.render(<Page />);

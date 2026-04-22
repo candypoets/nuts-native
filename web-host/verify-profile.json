@@ -1,0 +1,216 @@
+{
+  "bundle": "profile",
+  "timestamp": "2026-04-22T11:53:36.875Z",
+  "screenshot": "web-host/verify-profile.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core."
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Profile.......＋🔍🚪Logout›Profile👤My Profile›✏️Edit Profile›🔑Keys›🐦RelaysYour relay of choice›🏦",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Profile.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Profile",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "......＋🔍🚪Logout›Profile👤My Profile›✏️Edit Profile›🔑Keys›🐦RelaysYour relay of choice›🏦WalletYou",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "......＋",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "......",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "...",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "＋",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔍",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🚪Logout›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "🚪",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Logout",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "›",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "👤My Profile›✏️Edit Profile›🔑Keys›🐦RelaysYour relay of choice›🏦WalletYour wallet preferences›🎨Th",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "👤My Profile›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "👤",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "My Profile",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "✏️Edit Profile›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "✏️",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Edit Profile",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔑Keys›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "🔑",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Keys",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🐦RelaysYour relay of choice›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "🐦",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "RelaysYour relay of choice",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Relays",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Your relay of choice",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🏦WalletYour wallet preferences›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "🏦",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "WalletYour wallet preferences",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Wallet",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Your wallet preferences",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🎨ThemeCustomize your appearance›",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "🎨",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "ThemeCustomize your appearance",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Theme",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Customize your appearance",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}

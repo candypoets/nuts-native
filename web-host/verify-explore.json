@@ -1,16 +1,198 @@
 {
   "bundle": "explore",
-  "timestamp": "2026-04-22T11:50:52.139Z",
+  "timestamp": "2026-04-22T11:52:46.458Z",
   "screenshot": "web-host/verify-explore.png",
   "logs": [
     "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
     "[error] NYI: profileStart. This is an issue of lynx-core.",
     "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
     "[error] NYI: profileEnd. This is an issue of lynx-core.",
-    "[error] The following error occurred in the JSRuntime:",
-    "[error] loadCard failed TypeError: Cannot destructure property 'unreadCount' of '(e , (intermediate value)(intermediate value)(intermediate value))' as it is null.\nTypeError: Cannot destructure property 'unreadCount' of '(e , (intermediate value)(intermediate value)(intermediate value))' as it is null.\n    at Q.rn [as constructor] (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:4:19611)\n    at Q.ef [as render] (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:15850)\n    at es (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:13174)\n    at en (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:9730)\n    at es (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:13555)\n    at en (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:9730)\n    at es (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:13555)\n    at eh (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:3:16003)\n    at Object.render (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:4:20687)\n    at eval (eval at d (http://127.0.0.1:46401/node_modules/@lynx-js/web-core/dist/client_prod/static/js/async/web-core-worker-chunk.js:1:8185), <anonymous>:4:20762)"
+    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME"
   ],
-  "elements": [],
-  "passed": false,
+  "elements": [
+    {
+      "tag": "div",
+      "text": "∞🔔Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡Bob5mJust sent some eCash over Nostr.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "∞🔔",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "∞",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔔",
+      "visible": true
+    },
+    {
+      "tag": "x-list",
+      "text": "Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡Bob5mJust sent some eCash over Nostr. Li",
+      "visible": false
+    },
+    {
+      "tag": "list-item",
+      "text": "Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Alice✓alice@example.com1m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Alice✓alice@example.com",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Alice",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "✓alice@example.com",
+      "visible": false
+    },
+    {
+      "tag": "x-text",
+      "text": "✓",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "alice@example.com",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "1m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Hello from mock nipworker!",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "💬",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔄",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "❤️",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "↗️",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "⚡",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "Bob5mJust sent some eCash over Nostr. Lightning fast and private! ⚡💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Bob5m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Bob",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "5m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Just sent some eCash over Nostr. Lightning fast and private! ⚡",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "Carol15mThe migration to ReactLynx is looking great. Native navigation feels so much smoother.💬🔄❤️",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Carol15m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Carol",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "15m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "The migration to ReactLynx is looking great. Native navigation feels so much smoother.",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "b2c3d4e5f678901...20mExploring the decentralized web with Nostr and eCash.💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "b2c3d4e5f678901...20m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "b2c3d4e5f678901...",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "20m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Exploring the decentralized web with Nostr and eCash.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "✏️",
+      "visible": true
+    }
+  ],
+  "passed": true,
   "error": null
 }

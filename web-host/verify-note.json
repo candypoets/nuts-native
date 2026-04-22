@@ -1,0 +1,45 @@
+{
+  "bundle": "note",
+  "timestamp": "2026-04-22T11:53:25.052Z",
+  "screenshot": "web-host/verify-note.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core."
+  ],
+  "elements": [
+    {
+      "tag": "div",
+      "text": "←Note.Note not found",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Note.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Note",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": ".",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Note not found",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}
