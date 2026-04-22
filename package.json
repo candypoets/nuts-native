@@ -57,6 +57,9 @@
     "screenshot": "node scripts/screenshot-web.mjs",
     "screenshot:main": "node scripts/screenshot-web.mjs ./web-host/screenshot-main.png main",
     "screenshot:explore": "node scripts/screenshot-web.mjs ./web-host/screenshot-explore.png explore",
-    "screenshot:chat": "node scripts/screenshot-web.mjs ./web-host/screenshot-chat.png chat"
+    "screenshot:chat": "node scripts/screenshot-web.mjs ./web-host/screenshot-chat.png chat",
+    "verify": "node scripts/verify-page.mjs",
+    "verify:main": "node scripts/verify-page.mjs main ./web-host",
+    "verify:all": "for b in main explore chat note user profile followlists keys kind0 logout qr post send receive cmdk; do echo \"=== $$b ===\"; node scripts/verify-page.mjs $$b ./web-host | grep -E 'Passed:|Visible elements:'; done"
   }
 }
