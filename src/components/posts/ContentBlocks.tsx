@@ -22,7 +22,7 @@ function extractYouTubeId(url: string): string | null {
 }
 
 function tokenize(input: string): Token[] {
-  const regex = /(https?:\/\/[^\s]+)|(nostr:npub1[ac-hj-np-z02-9]+|nostr:nprofile1[ac-hj-np-z02-9]+)|(@\w+)|(#\w+)/g;
+  const regex = /(https?:\/\/[^\s]+)|(nostr:npub1[acdefghijklmnopqrstuvwxyz023456789]+|nostr:nprofile1[acdefghijklmnopqrstuvwxyz023456789]+)|(@\w+)|(#\w+)/g;
   const tokens: Token[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;

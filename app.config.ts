@@ -43,7 +43,7 @@ const lynxConfig = defineConfig({
       ecash: './src/pages/ecash/index.tsx',
       kind1111: './src/pages/kind1111/index.tsx',
       zoom: './src/pages/zoom/index.tsx',
-      testbuild: './src/pages/test-build/index.tsx',
+      // testbuild: './src/pages/test-build/index.tsx',
       tags: './src/pages/tags/index.tsx',
     },
   },

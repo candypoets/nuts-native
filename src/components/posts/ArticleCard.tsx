@@ -1,10 +1,19 @@
-import { marked } from 'marked';
 import { view, text } from '@lynx-js/react';
 
 function markdownToPlaintext(md: string): string {
   try {
-    const html = marked.parse(md) as string;
-    return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    // Simple markdown stripping (headings, bold, italic, links, images, code, blockquotes)
+    return md
+      .replace(/```[\s\S]*?```/g, ' ')
+      .replace(/`[^`]+`/g, ' ')
+      .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
+      .replace(/\[[^\]]*\]\([^)]+\)/g, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/^#{1,6}\s+/gm, ' ')
+      .replace(/[*_]{1,2}/g, ' ')
+      .replace(/>\s?/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
   } catch {
     return md;
   }

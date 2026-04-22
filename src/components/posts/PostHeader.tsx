@@ -1,5 +1,4 @@
 import { view, text, image } from '@lynx-js/react';
-import { format } from 'date-fns/format';
 import { go } from '../../lib/navigation.js';
 
 function formatTimeShort(timestamp: number): string {
@@ -12,7 +11,8 @@ function formatTimeShort(timestamp: number): string {
   if (minutes < 60) return `${minutes}m`;
   if (hours < 24) return `${hours}h`;
   if (days < 30) return `${days}d`;
-  return format(timestamp * 1000, 'yyyy/MM/dd');
+  const d = new Date(timestamp * 1000);
+  return `${d.getFullYear()}/${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
 }
 
 export function PostHeader({
