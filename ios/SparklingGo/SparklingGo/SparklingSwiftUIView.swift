@@ -22,7 +22,11 @@ struct SPKSwiftUIView: UIViewRepresentable {
         
         let view = SPKContainerView(frame: rect)
         
+        #if DEBUG
+        let url = "hybrid://lynxview_page?bundle=http://192.168.178.132:3000/main.lynx.bundle&hide_nav_bar=true&hide_status_bar=true"
+        #else
         let url = "hybrid://lynxview_page?bundle=main.lynx.bundle&hide_nav_bar=true&hide_status_bar=true"
+        #endif
 //        let url = "hybrid://lynxview_page?bundle=second.lynx.bundle&hide_nav_bar=true&hide_status_bar=true"
         
         view.load(withURL: url, context)

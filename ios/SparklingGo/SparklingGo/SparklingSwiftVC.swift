@@ -17,6 +17,29 @@ class SparklingLynxElement: SPKLynxElement {
     }
 }
 
+#if DEBUG
+class ReloadableNavigationController: UINavigationController {
+    var sparklingVC: UIViewController?
+    
+    override var canBecomeFirstResponder: Bool { true }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        becomeFirstResponder()
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            print("[DEBUG] Shake detected — reloading Lynx bundle...")
+            if let container = sparklingVC as? SPKContainerProtocol {
+                container.reload(nil)
+            }
+        }
+        super.motionEnded(motion, with: event)
+    }
+}
+#endif
+
 struct SPKSwiftVC: UIViewControllerRepresentable {
     @State private var state_frame: CGRect
     
@@ -25,12 +48,22 @@ struct SPKSwiftVC: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> some UIViewController {
+        #if DEBUG
+        let url = "hybrid://lynxview_page?bundle=http://192.168.178.132:3000/main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
+        #else
         let url = "hybrid://lynxview_page?bundle=main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
+        #endif
         let context = SPKContext()
         let elements = SparklingLynxElement(lynxElementName: "input", lynxElementClassName: LynxInput.self)
         context.customUIElements = [elements]
         let vc = SPKRouter.create(withURL: url, context: context, frame: self.state_frame)
+        
+        #if DEBUG
+        let naviVC = ReloadableNavigationController(rootViewController: vc)
+        naviVC.sparklingVC = vc
+        #else
         let naviVC = UINavigationController(rootViewController: vc)
+        #endif
         return naviVC
     }
     

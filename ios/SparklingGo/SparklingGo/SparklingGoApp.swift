@@ -27,6 +27,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         SPKKit.DIContainer.register(SPKTrackerService.self, scope: ServiceScope.transient) {
             SparklingGoTrackerService()
         }
+        
+        // Enable Lynx DevTool for debugging and live reload
+        #if DEBUG
+        let lynxEnv = LynxEnv.sharedInstance()
+        lynxEnv.lynxDebugEnabled = true
+        lynxEnv.devtoolEnabled = true
+        lynxEnv.logBoxEnabled = true
+        #endif
+        
         return true
     }
 }
