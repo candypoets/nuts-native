@@ -1,0 +1,223 @@
+{
+  "bundle": "main",
+  "timestamp": "2026-04-22T11:50:24.593Z",
+  "screenshot": "web-host/verify-main.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core.",
+    "[PAGE ERROR] Cannot read properties of undefined (reading 'documentElement')",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME"
+  ],
+  "elements": [
+    {
+      "tag": "style",
+      "text": ":not([l-e-name]){}@font-face {font-family:m6x;src:url('asset:///m6x11plus.ttf') format(\"truetype\")}\n",
+      "visible": false
+    },
+    {
+      "tag": "div",
+      "text": "∞🔔Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡Bob5mJust sent some eCash over Nostr.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "∞🔔",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "∞",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔔",
+      "visible": true
+    },
+    {
+      "tag": "x-list",
+      "text": "Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡Bob5mJust sent some eCash over Nostr. Li",
+      "visible": false
+    },
+    {
+      "tag": "list-item",
+      "text": "Alice✓alice@example.com1mHello from mock nipworker!💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Alice✓alice@example.com1m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Alice✓alice@example.com",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Alice",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "✓alice@example.com",
+      "visible": false
+    },
+    {
+      "tag": "x-text",
+      "text": "✓",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "alice@example.com",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "1m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Hello from mock nipworker!",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "💬",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "🔄",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "❤️",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "↗️",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "⚡",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "Bob5mJust sent some eCash over Nostr. Lightning fast and private! ⚡💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Bob5m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Bob",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "5m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Just sent some eCash over Nostr. Lightning fast and private! ⚡",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "Carol15mThe migration to ReactLynx is looking great. Native navigation feels so much smoother.💬🔄❤️",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "Carol15m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "Carol",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "15m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "The migration to ReactLynx is looking great. Native navigation feels so much smoother.",
+      "visible": true
+    },
+    {
+      "tag": "list-item",
+      "text": "b2c3d4e5f678901...20mExploring the decentralized web with Nostr and eCash.💬🔄❤️↗️⚡",
+      "visible": true
+    },
+    {
+      "tag": "lynx-wrapper",
+      "text": "b2c3d4e5f678901...20m",
+      "visible": false
+    },
+    {
+      "tag": "x-view",
+      "text": "b2c3d4e5f678901...",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "20m",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Exploring the decentralized web with Nostr and eCash.",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "✏️",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "HomeExploreChat",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Home",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Explore",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Chat",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}

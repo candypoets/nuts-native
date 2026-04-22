@@ -1,0 +1,181 @@
+{
+  "bundle": "chat",
+  "timestamp": "2026-04-22T11:50:39.045Z",
+  "screenshot": "web-host/verify-chat.png",
+  "logs": [
+    "[warning] An iframe which has both allow-scripts and allow-same-origin for its sandbox attribute can escape its sandboxing.",
+    "[error] Failed to load resource: net::ERR_UNKNOWN_URL_SCHEME",
+    "[error] NYI: profileStart. This is an issue of lynx-core.",
+    "[error] NYI: isProfileRecording. This is an issue of lynx-core.",
+    "[error] NYI: profileEnd. This is an issue of lynx-core."
+  ],
+  "elements": [
+    {
+      "tag": "style",
+      "text": ":not([l-e-name]){}@font-face {font-family:m6x;src:url('asset:///m6x11plus.ttf') format(\"truetype\")}\n",
+      "visible": false
+    },
+    {
+      "tag": "div",
+      "text": "←Chat＋Messages2Requests0Groups1Alice2mHey, are we still on for later?Bob1hSent you the invoice ⚡Nost",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←Chat＋",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "←",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Chat",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "＋",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Messages2Requests0Groups1Alice2mHey, are we still on for later?Bob1hSent you the invoice ⚡Nostr Devs",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Messages2Requests0Groups1",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Messages2",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Messages",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "2",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Requests0",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Requests",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "0",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Groups1",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Groups",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "1",
+      "visible": true
+    },
+    {
+      "tag": "scrollview",
+      "text": "Alice2mHey, are we still on for later?Bob1hSent you the invoice ⚡Nostr Devs3hNew release is out!",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Alice2mHey, are we still on for later?",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Alice2m",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Alice",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "2m",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Hey, are we still on for later?",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Bob1hSent you the invoice ⚡",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Bob1h",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Bob",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "1h",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Sent you the invoice ⚡",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Nostr Devs3hNew release is out!",
+      "visible": true
+    },
+    {
+      "tag": "x-view",
+      "text": "Nostr Devs3h",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "Nostr Devs",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "3h",
+      "visible": true
+    },
+    {
+      "tag": "x-text",
+      "text": "New release is out!",
+      "visible": true
+    }
+  ],
+  "passed": true,
+  "error": null
+}
