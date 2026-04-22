@@ -29,6 +29,9 @@
     "@lynx-js/react-rsbuild-plugin": "^0.12.7",
     "@lynx-js/rspeedy": "^0.13.3",
     "@lynx-js/types": "^3.6.0",
+    "@lynx-js/web-core": "^0.20.2",
+    "@lynx-js/web-elements": "^0.12.0",
+    "@playwright/test": "^1.59.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@types/react": "^18.3.20",
     "@vitest/coverage-v8": "^4.0.18",
@@ -36,6 +39,7 @@
     "prettier": "^3.8.1",
     "sparkling-app-cli": "~2.0.1",
     "typescript": "^5.9.3",
+    "vite": "^8.0.9",
     "vitest": "^4.0.18"
   },
   "engines": {
