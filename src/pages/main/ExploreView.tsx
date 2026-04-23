@@ -22,7 +22,7 @@ export function ExploreView() {
         </view>
         <view className="flex gap-3 items-center">
           <view className="relative" bindtap={() => pushModal('notifications')}>
-            <text className="text-2xl text-white">🔔</text>
+            <text className="text-xl text-white/60">🔔</text>
             {unreadCount > 0 && (
               <view className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500" />
             )}
@@ -73,12 +73,12 @@ export function ExploreView() {
         </view>
       </view>
 
-      {/* Floating post button */}
+      {/* Floating post button — matches web "What's up?" style */}
       <view
-        className="absolute bottom-20 right-4 w-12 h-12 rounded-full bg-accent flex items-center justify-center shadow-lg"
+        className="absolute bottom-20 right-4 px-4 py-2 rounded-full border border-accent bg-base-300 bg-opacity-80 flex items-center justify-center"
         bindtap={() => pushModal('post')}
       >
-        <text className="text-white text-xl">✏️</text>
+        <text className="text-white text-sm">What's up?</text>
       </view>
     </view>
   );

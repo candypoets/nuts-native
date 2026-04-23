@@ -1,4 +1,4 @@
-import { view, text, scrollView } from '@lynx-js/react';
+import { view, text } from '@lynx-js/react';
 import { ReactNode, useState, useEffect } from 'react';
 import { goBack } from '../lib/navigation.js';
 
@@ -57,7 +57,7 @@ export function ModalOverlay({
 
   return (
     <view
-      className="fixed inset-0 z-50"
+      className="absolute inset-0 z-50"
       style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
     >
       {/* Backdrop - dims the content behind */}
@@ -89,9 +89,9 @@ export function ModalOverlay({
         )}
 
         {/* Content */}
-        <scrollView className="max-h-[calc(90vh-60px)]">
+        <scroll-view className="max-h-[calc(90vh-60px)]">
           <view className="p-4">{children}</view>
-        </scrollView>
+        </scroll-view>
       </view>
     </view>
   );
@@ -132,7 +132,7 @@ export function SubOverlay({
   };
 
   return (
-    <view className="fixed inset-0 z-50 overflow-hidden">
+    <view className="absolute inset-0 z-50 overflow-hidden">
       {/* Content slides in from right */}
       <view
         className="absolute inset-0 bg-basic mobile-height"

@@ -1,6 +1,6 @@
 // Original: /root/code/nuts-cash/src/routes/login.svelte
 import { root } from '@lynx-js/react';
-import { view, text, scrollView } from '@lynx-js/react';
+import { view, text } from '@lynx-js/react';
 
 import { useState } from 'react';
 import { goBack } from '../../lib/navigation.js';
@@ -27,7 +27,7 @@ function Page() {
   };
 
   return (
-    <scrollView className="mobile-height bg-basic">
+    <scroll-view className="mobile-height bg-basic">
       <view className="min-h-screen px-4 py-8 flex flex-col">
         <view className="flex items-center justify-between mb-8">
           <text className="text-white text-xl font-bold">Login</text>
@@ -163,7 +163,7 @@ function Page() {
           </view>
         )}
       </view>
-    </scrollView>
+    </scroll-view>
   );
 }
 

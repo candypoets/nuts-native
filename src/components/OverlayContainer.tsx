@@ -1,4 +1,4 @@
-import { view, text, scrollView } from '@lynx-js/react';
+import { view, text } from '@lynx-js/react';
 import { useState, useEffect } from 'react';
 import {
   useOverlayStack,
@@ -25,8 +25,7 @@ const overlayComponents: Record<string, React.FC<{ params?: Record<string, unkno
 
 function SendOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Send Money</text>
           <view bindtap={onClose}>
@@ -45,14 +44,12 @@ function SendOverlay({ onClose, depth }: { onClose: () => void; depth: number })
           <text className="text-white font-semibold">Confirm Send</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function ReceiveOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Receive</text>
           <view bindtap={onClose}>
@@ -65,14 +62,12 @@ function ReceiveOverlay({ onClose, depth }: { onClose: () => void; depth: number
           <text className="text-white font-semibold">Done</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function PostOverlay({ onClose, depth, params }: { onClose: () => void; depth: number; params?: Record<string, unknown> }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">New Post</text>
           <view bindtap={onClose}>
@@ -85,14 +80,12 @@ function PostOverlay({ onClose, depth, params }: { onClose: () => void; depth: n
           <text className="text-white font-semibold">Post</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function ProfileOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Profile</text>
           <view bindtap={onClose}>
@@ -105,14 +98,12 @@ function ProfileOverlay({ onClose, depth }: { onClose: () => void; depth: number
           <text className="text-white font-semibold">Save</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function ScanOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Scan QR</text>
           <view bindtap={onClose}>
@@ -127,14 +118,12 @@ function ScanOverlay({ onClose, depth }: { onClose: () => void; depth: number })
           <text className="text-white font-semibold">Close</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function FollowListsOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Feed Builder</text>
           <view bindtap={onClose}>
@@ -147,14 +136,12 @@ function FollowListsOverlay({ onClose, depth }: { onClose: () => void; depth: nu
           <text className="text-white font-semibold">Save</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
 function NotificationsOverlay({ onClose, depth }: { onClose: () => void; depth: number }) {
   return (
-    <scrollView className="h-full">
-      <view className="p-4">
+    <view className="p-4">
         <view className="flex items-center justify-between mb-4">
           <text className="text-white text-xl font-bold">Notifications</text>
           <view bindtap={onClose}>
@@ -167,7 +154,6 @@ function NotificationsOverlay({ onClose, depth }: { onClose: () => void; depth: 
           <text className="text-white font-semibold">Mark All Read</text>
         </view>
       </view>
-    </scrollView>
   );
 }
 
@@ -204,8 +190,8 @@ export function OverlayContainer() {
   const backdropStyle = getBackdropStyles(depth);
 
   return (
-    <view 
-      className="fixed inset-0 z-50 overflow-hidden"
+    <view
+      className="absolute inset-0 z-50 overflow-hidden"
       style={{ pointerEvents: isTopOpen ? 'auto' : 'none' }}
     >
       {/* Backdrop - closes top overlay on tap */}
@@ -261,14 +247,15 @@ function OverlayItemView({
   // Container positioning based on type
   const isModal = item.type === 'modal';
   const containerClass = isModal
-    ? 'absolute bottom-0 left-0 right-0 bg-basic rounded-t-3xl max-h-[90vh] overflow-hidden'
-    : 'absolute inset-0 bg-basic overflow-hidden';
+    ? 'absolute bottom-0 left-0 right-0 rounded-t-3xl overflow-hidden'
+    : 'absolute inset-0 overflow-hidden';
 
   return (
     <view
       className={containerClass}
       style={{
         ...overlayStyle,
+        backgroundColor: '#1a1a1a',
         // For stacked modals, add slight offset to show depth
         bottom: isModal && !isTop ? `${(totalDepth - index - 1) * 10}px` : undefined,
         // Full screen for subs, slight inset for stacked modals
@@ -332,7 +319,7 @@ export function BackgroundWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <view
-      className="w-full h-full flex flex-col"
+      className="w-full flex-1 flex flex-col"
       style={bgStyle}
     >
       {children}

@@ -1,4 +1,5 @@
 // Original: /root/code/nuts-cash/src/routes/+page.svelte (main tab container)
+// Note: App structure is in src/routes/index.svelte
 import '../../app.css';
 import { useEffect, useState } from 'react';
 import { view, text } from '@lynx-js/react';
@@ -44,12 +45,7 @@ function MainApp() {
   }, [stores.setKey]);
 
   return (
-    <view className="mobile-height bg-basic flex flex-col">
-      {/* 
-        BackgroundWrapper animates the main content when an overlay opens.
-        - For modal: scales down to 0.95 and dims
-        - For sub: slides left 20%, scales to 0.95, dims slightly
-      */}
+    <view className="mobile-height bg-base-200 flex flex-col relative">
       <BackgroundWrapper>
         <view className="flex-1 overflow-hidden flex flex-col">
           {tab === 'home' && <view key="home-tab" className="flex-1 flex flex-col"><HomeView /></view>}
@@ -64,11 +60,6 @@ function MainApp() {
         </view>
       </BackgroundWrapper>
 
-      {/* 
-        OverlayContainer renders modal/sub overlays on top.
-        - Modal: slides up from bottom with handle bar
-        - Sub: pushes from right with back button
-      */}
       <OverlayContainer />
     </view>
   );

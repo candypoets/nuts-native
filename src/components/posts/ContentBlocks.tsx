@@ -104,7 +104,7 @@ export function ContentBlocks({
                   className="w-full my-1 px-3 py-2 rounded-lg border border-white/10 bg-white/5 flex flex-row items-center gap-2"
                   catchtap={() => onLink?.(token.value)}
                 >
-                  <text className="text-sm">🌐</text>
+                  <text className="text-sm text-white/60">⊙</text>
                   <text className="text-sm text-white/80">{hostname}</text>
                 </view>
               );
@@ -121,7 +121,7 @@ export function ContentBlocks({
                   style={{ aspectRatio: '16/9', backgroundColor: '#0f0f0f' }}
                   catchtap={() => onLink?.(token.value)}
                 >
-                  <text className="text-3xl">▶️</text>
+                  <text className="text-3xl text-white/60">▶</text>
                   <text className="text-sm text-white/60 mt-2">YouTube video</text>
                 </view>
               );
@@ -163,7 +163,7 @@ export function ContentBlocks({
               );
             }
             return (
-              <text key={key} className="text-sm text-white/90">
+              <text key={key} className="text-sm" style={{ color: 'var(--highlight)' }}>
                 {token.value}
               </text>
             );
