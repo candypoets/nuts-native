@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
         val context = SparklingContext()
         val bundleName = intent.getStringExtra("bundle") ?: "main.lynx.bundle"
         val bundleUrl = if (BuildConfig.DEBUG && !bundleName.startsWith("http")) {
-            "http://10.0.2.2:3002/$bundleName"
+            "http://192.168.178.86:3002/$bundleName"
         } else {
             bundleName
         }

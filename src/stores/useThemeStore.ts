@@ -11,9 +11,13 @@ export function useThemeStore() {
 		storage.getItem(THEME_KEY).then((value) => {
 			if (value) {
 				setThemeState(value);
-				document.documentElement?.setAttribute?.('data-theme', value);
+				if (typeof document !== 'undefined') {
+					document.documentElement?.setAttribute?.('data-theme', value);
+				}
 			} else {
-				document.documentElement?.setAttribute?.('data-theme', 'matteblack');
+				if (typeof document !== 'undefined') {
+					document.documentElement?.setAttribute?.('data-theme', 'matteblack');
+				}
 			}
 			setLoaded(true);
 		});
@@ -22,7 +26,9 @@ export function useThemeStore() {
 	const setTheme = useCallback((value: string) => {
 		setThemeState(value);
 		storage.setItem(THEME_KEY, value);
-		document.documentElement?.setAttribute?.('data-theme', value);
+		if (typeof document !== 'undefined') {
+			document.documentElement?.setAttribute?.('data-theme', value);
+		}
 	}, []);
 
 	return { theme, setTheme, loaded };

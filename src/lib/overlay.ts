@@ -183,16 +183,16 @@ export function pushSub(component: string, params?: Record<string, unknown>): st
 export const overlayAnimations = {
   modal: {
     overlay: {
-      in: { transform: 'translateY(0)', opacity: 1 },
-      out: { transform: 'translateY(100%)', opacity: 0 },
-      transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
+      in: { opacity: 1 },
+      out: { opacity: 0 },
+      transition: 'opacity 0.3s ease-out',
     },
   },
   sub: {
     overlay: {
-      in: { transform: 'translateX(0)', opacity: 1 },
-      out: { transform: 'translateX(100%)', opacity: 0 },
-      transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
+      in: { opacity: 1 },
+      out: { opacity: 0 },
+      transition: 'opacity 0.3s ease-out',
     },
   },
 };
@@ -207,26 +207,12 @@ export const overlayAnimations = {
  */
 export function getBackgroundStyles(depth: number, topType: OverlayType = 'modal'): React.CSSProperties {
   const maxDepth = Math.min(depth, 4); // Cap at 4 levels
-  
-  const scale = Math.max(0.8, 1 - maxDepth * 0.05);
   const opacity = Math.max(0.15, 1 - maxDepth * 0.35);
-  
-  // Sub-type overlays add horizontal shift
-  const translateX = topType === 'sub' 
-    ? -Math.min(45, maxDepth * 15) // -15%, -30%, -45%
-    : 0;
-  
-  const translateY = topType === 'modal'
-    ? -Math.min(10, maxDepth * 3) // Slight upward shift for modals
-    : 0;
 
   return {
-    transform: `translateX(${translateX}%) translateY(${translateY}%) scale(${scale})`,
     opacity,
-    transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
-    borderRadius: maxDepth > 0 ? `${maxDepth * 8}px` : '0',
+    transition: 'opacity 0.3s ease-out',
     overflow: 'hidden',
-    willChange: 'transform, opacity',
   };
 }
 
@@ -251,26 +237,12 @@ export function getOverlayStyles(
   // Stacked effect for non-top items
   const stackOffset = isTop ? 0 : (totalDepth - index - 1) * 4; // 4px per level behind
   
-  if (item.type === 'modal') {
-    return {
-      ...baseStyle,
-      transform: item.isOpen 
-        ? `translateY(0)` 
-        : `translateY(100%)`,
-      transition: anim.overlay.transition,
-      zIndex: 50 + index, // Ensure proper layering
-    };
-  } else {
-    // Sub type
-    return {
-      ...baseStyle,
-      transform: item.isOpen 
-        ? `translateX(${stackOffset}px)` 
-        : `translateX(100%)`,
-      transition: anim.overlay.transition,
-      zIndex: 50 + index,
-    };
-  }
+  return {
+    ...baseStyle,
+    opacity: item.isOpen ? 1 : 0,
+    transition: anim.overlay.transition,
+    zIndex: 50 + index,
+  };
 }
 
 /**

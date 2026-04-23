@@ -83,7 +83,7 @@ function Page() {
         </view>
 
         {/* Chat list */}
-        <scrollView className="flex-1">
+        <scroll-view className="flex-1">
           <view className="px-4 py-2">
             {PLACEHOLDER_CHATS.map((chat) => (
               <view
@@ -109,7 +109,7 @@ function Page() {
               </view>
             ))}
           </view>
-        </scrollView>
+        </scroll-view>
       </view>
     </PageShell>
   );

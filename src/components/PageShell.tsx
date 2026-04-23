@@ -1,4 +1,4 @@
-import { view, text, scrollView } from '@lynx-js/react';
+import { view, text } from '@lynx-js/react';
 import { ReactNode } from 'react';
 import { goBack } from '../lib/navigation.js';
 
@@ -12,7 +12,7 @@ export function PageShell({
   rightAction?: ReactNode;
 }) {
   return (
-    <scrollView className="mobile-height bg-basic">
+    <scroll-view className="mobile-height bg-basic">
       <view className="min-h-screen flex flex-col">
         <view className="flex items-center justify-between px-4 h-16 border-b border-white/10">
           <view bindtap={goBack}>
@@ -27,6 +27,6 @@ export function PageShell({
           {children}
         </view>
       </view>
-    </scrollView>
+    </scroll-view>
   );
 }

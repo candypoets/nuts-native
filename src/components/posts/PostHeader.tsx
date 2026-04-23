@@ -46,7 +46,7 @@ export function PostHeader({
         <view bindtap={() => go('user', { pubkey: pubkeyValue })}>
           <image
             src={pictureValue || 'asset:///miss-profile.png'}
-            className="w-8 h-8 rounded-full border border-white/10 object-cover"
+            className="w-8 h-8 rounded-full border object-cover"
           />
         </view>
       </view>

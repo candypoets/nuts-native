@@ -1,7 +1,7 @@
 // Original: /root/code/nuts-cash/src/routes/explore/notifications.svelte
 // Note: Full notifications folder at src/routes/notifications/
 import { useState, useEffect } from 'react';
-import { root, view, text, scrollView } from '@lynx-js/react';
+import { root, view, text } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { NotificationRow } from '../../components/NotificationRow.js';
 import { useNotifications, categorizeEvent } from '../../hooks/useNotifications.js';
@@ -49,7 +49,7 @@ function Page() {
 				))}
 			</view>
 
-			<scrollView className="flex-1">
+			<scroll-view className="flex-1">
 				{loading && activeEvents.length === 0 && (
 					<view className="py-12 items-center">
 						<text className="text-white/60 text-sm">Loading notifications…</text>
@@ -74,7 +74,7 @@ function Page() {
 						<text className="text-white/70 text-sm">Sign in to view your notifications</text>
 					</view>
 				</view>
-			</scrollView>
+			</scroll-view>
 		</PageShell>
 	);
 }

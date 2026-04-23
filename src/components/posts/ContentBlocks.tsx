@@ -163,7 +163,7 @@ export function ContentBlocks({
               );
             }
             return (
-              <text key={key} className="text-sm text-white/90">
+              <text key={key} className="text-sm" style={{ color: 'var(--highlight)' }}>
                 {token.value}
               </text>
             );

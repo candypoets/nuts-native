@@ -1,7 +1,7 @@
 // Original: /root/code/nuts-cash/src/components/ImageZoom.svelte
 // Note: Also see src/components/ImageZoomContext.svelte for context
 import { useState, useEffect } from 'react';
-import { root, view, text, image, scrollView } from '@lynx-js/react';
+import { root, view, text, image } from '@lynx-js/react';
 import { getItem, setItem } from '../../stores/storage.js';
 import { goBack } from '../../lib/navigation.js';
 
@@ -61,7 +61,7 @@ function Page() {
       {/* Image viewer */}
       <view className="flex-1 relative">
         {currentUrl ? (
-          <scrollView
+          <scroll-view
             className="w-full h-full"
             {...({ 'scroll-x': true, 'scroll-y': true } as any)}
           >
@@ -75,7 +75,7 @@ function Page() {
                 style={{ objectFit: 'contain' }}
               />
             </view>
-          </scrollView>
+          </scroll-view>
         ) : (
           <view className="flex items-center justify-center h-full">
             <text className="text-white/50 text-sm">No image</text>
