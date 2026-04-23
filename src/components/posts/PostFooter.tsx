@@ -2,23 +2,23 @@ import { view, text } from '@lynx-js/react';
 import { go } from '../../lib/navigation.js';
 
 function IconReply({ className }: { className?: string }) {
-	return <text className={className}>💬</text>;
+	return <text className={className}>↩</text>;
 }
 
 function IconRepost({ className }: { className?: string }) {
-	return <text className={className}>🔄</text>;
+	return <text className={className}>↻</text>;
 }
 
 function IconLike({ className, filled }: { className?: string; filled?: boolean }) {
-	return <text className={className}>{filled ? '❤️' : '🤍'}</text>;
+	return <text className={className}>{filled ? '♥' : '♡'}</text>;
 }
 
 function IconShare({ className }: { className?: string }) {
-	return <text className={className}>📤</text>;
+	return <text className={className}>↗</text>;
 }
 
 function IconZap({ className }: { className?: string }) {
-	return <text className={className}>⚡</text>;
+	return <text className={className}>⌁</text>;
 }
 
 export function PostFooter({
@@ -76,7 +76,7 @@ export function PostFooter({
 					onLike?.();
 				}}
 			>
-				<IconLike className="text-sm" filled={liked} />
+				<IconLike className={liked ? 'text-accent text-sm' : 'text-white/40 text-sm'} filled={liked} />
 				{reactionCount > 0 ? (
 					<text className={liked ? 'text-xs text-accent' : 'text-xs text-white/40'}>
 						{reactionCount}
