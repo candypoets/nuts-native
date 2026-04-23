@@ -8,6 +8,7 @@ import Sparkling
 import SDWebImage
 import SDWebImageWebPCoder
 import SparklingMethod
+import Nipworker
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
@@ -24,6 +25,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         // via the __DATA,SPK_PRE_SVC Mach-O section.
         SPKLynxService.executePrepareServiceTask()
         SPKResourceLoaderImpl.executePrepareServiceTask()
+        
+        // Register NIPWorker Lynx native module
+        LynxEnv.sharedInstance().globalConfig.registerModule(NipworkerLynxModule.self)
         SPKKit.DIContainer.register(SPKTrackerService.self, scope: ServiceScope.transient) {
             SparklingGoTrackerService()
         }

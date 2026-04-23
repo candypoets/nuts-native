@@ -46,7 +46,8 @@ class BuiltinTemplateProvider(context: Context) : AbsTemplateProvider() {
     }
 
     private fun loadAsset(uri: String, callback: Callback) {
-        mContext.assets.open(uri).use { inputStream ->
+        val assetPath = uri.removePrefix("asset:///")
+        mContext.assets.open(assetPath).use { inputStream ->
             ByteArrayOutputStream().use { byteArrayOutputStream ->
                 val buffer = ByteArray(1024)
                 var length: Int

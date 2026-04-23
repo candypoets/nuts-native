@@ -1,7 +1,7 @@
 import { view, text, image } from '@lynx-js/react';
-import { getKind0 } from '../lib/nipworker-mock.js';
+import { getKind0 } from '../lib/nipworker.js';
 import { go } from '../lib/navigation.js';
-import type { ParsedEvent } from '../lib/nipworker-mock.js';
+import type { ParsedEvent } from '../lib/nipworker.js';
 
 function formatTimeShort(timestamp: number): string {
   const now = Date.now();

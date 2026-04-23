@@ -7,7 +7,7 @@ import { PageShell } from '../../components/PageShell.js';
 import { go } from '../../lib/navigation.js';
 import { useKeyStore } from '../../stores/useKeyStore.js';
 import { useNostrStore } from '../../stores/useNostrStore.js';
-import { getKind0, getKind3 } from '../../lib/nipworker-mock.js';
+import { getKind0, getKind3 } from '../../lib/nipworker.js';
 
 function Page() {
   const [search, setSearch] = useState('');

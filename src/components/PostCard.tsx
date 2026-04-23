@@ -8,7 +8,7 @@ import { PollCard } from './posts/PollCard.js';
 import { ArticleCard } from './posts/ArticleCard.js';
 import { LiveCard } from './posts/LiveCard.js';
 import { go } from '../lib/navigation.js';
-import { getKind0 } from '../lib/nipworker-mock.js';
+import { getKind0 } from '../lib/nipworker.js';
 
 const imageRegex = /https?:\/\/[^\s]+\.(?:jpg|jpeg|png|gif|webp|avif|bmp|svg)(?:\?[^\s]*)?/gi;
 

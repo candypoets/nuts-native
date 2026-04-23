@@ -24,8 +24,8 @@ include(":app")
 
 // BEGIN SPARKLING AUTOLINK
 val sparklingAutolinkProjects = listOf<Pair<String, java.io.File>>(
-  "sparkling-media" to file("../node_modules/sparkling-media/android"),
   "sparkling-method" to file("../node_modules/sparkling-method/android"),
+  "sparkling-media" to file("../node_modules/sparkling-media/android"),
   "sparkling-navigation" to file("../node_modules/sparkling-navigation/android"),
   "sparkling-storage" to file("../node_modules/sparkling-storage/android")
 )

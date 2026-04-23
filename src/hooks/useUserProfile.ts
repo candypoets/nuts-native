@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { subscribeToEvents, isParsedEvent, asKind0, type ParsedEvent, type WorkerMessage } from '../lib/nipworker-mock.js';
+import { subscribeToEvents, isParsedEvent, asKind0, type ParsedEvent, type WorkerMessage } from '../lib/nipworker.js';
 
 export interface UserProfileState {
   profile: ParsedEvent | null;

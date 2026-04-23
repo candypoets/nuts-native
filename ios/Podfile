@@ -26,6 +26,9 @@ def sparkling_methods_dep
   pod 'Sparkling-Storage', :path => '../node_modules/sparkling-storage/ios'
   pod 'Sparkling-Router', :path => '../node_modules/sparkling-navigation/ios'
   # END SPARKLING AUTOLINK
+
+  # NIPWorker native module (Rust engine bridged to Lynx)
+  pod 'Nipworker', :path => '../node_modules/@candypoets/nipworker/crates/native-ffi/ios'
 end
 
 def sparkling_kit

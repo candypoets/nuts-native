@@ -6,6 +6,9 @@ import type { AppConfig } from 'sparkling-app-cli'
 
 const lynxConfig = defineConfig({
   source: {
+    alias: {
+      'nostr-tools': './src/lib/nostr-tools-mock.ts',
+    },
     entry: {
       main: './src/pages/main/index.tsx',
       explore: './src/pages/explore/index.tsx',
@@ -57,11 +60,6 @@ const lynxConfig = defineConfig({
     port: 3002,
   },
   plugins: [
-    pluginQRCode({
-      schema(url: string): string {
-        return `${url}?fullscreen=true`
-      },
-    }),
     pluginReactLynx(),
   ],
 })

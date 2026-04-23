@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { subscribeToEvents, isParsedEvent, asKind1, type ParsedEvent, type WorkerMessage } from '../lib/nipworker-mock.js';
+import { subscribeToEvents, isParsedEvent, asKind1, type ParsedEvent, type WorkerMessage } from '../lib/nipworker.js';
 
 export interface ExploreFeedState {
   events: ParsedEvent[];

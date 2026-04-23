@@ -5,7 +5,7 @@ import { PageShell } from '../../components/PageShell.js';
 import { goBack } from '../../lib/navigation.js';
 import { useStores } from '../../stores/StoreContext.js';
 import { StoreProvider } from '../../stores/StoreContext.js';
-import { getKind0, getKind3 } from '../../lib/nipworker-mock.js';
+import { getKind0, getKind3 } from '../../lib/nipworker.js';
 
 function Page() {
   const [activeTab, setActiveTab] = useState<'packs' | 'content'>('packs');

@@ -8,7 +8,7 @@ import { go } from '../../lib/navigation.js';
 import { useUserProfile } from '../../hooks/useUserProfile.js';
 import { useStores } from '../../stores/StoreContext.js';
 import { StoreProvider } from '../../stores/StoreContext.js';
-import { subscribeToEvents, isParsedEvent, asKind1, useSignEvent, getKind3, kind3Cache, getFollows, ParsedData, type ParsedEvent, type WorkerMessage } from '../../lib/nipworker-mock.js';
+import { subscribeToEvents, isParsedEvent, asKind1, useSignEvent, getKind3, kind3Cache, getFollows, ParsedData, type ParsedEvent, type WorkerMessage } from '../../lib/nipworker.js';
 
 const TABS = ['Posts', 'Replies', 'Media', 'Likes'] as const;
 type Tab = (typeof TABS)[number];

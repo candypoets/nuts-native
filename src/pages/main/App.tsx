@@ -4,7 +4,7 @@ import '../../app.css';
 import { useEffect, useState } from 'react';
 import { view, text } from '@lynx-js/react';
 import { StoreProvider, useStores } from '../../stores/StoreContext.js';
-import { getManager } from '../../lib/nipworker-mock.js';
+import { getManager } from '../../lib/nipworker.js';
 import { HomeView } from './HomeView';
 import { ExploreView } from './ExploreView';
 import { ChatView } from './ChatView';

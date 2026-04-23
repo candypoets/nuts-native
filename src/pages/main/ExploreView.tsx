@@ -1,6 +1,5 @@
 // Original: /root/code/nuts-cash/src/routes/explore/index.svelte (Explore tab content)
 // Note: See also src/routes/explore/feed.svelte, note.svelte, user.svelte
-import { view, text, image } from '@lynx-js/react';
 import { go, goSub } from '../../lib/navigation.js';
 import { pushModal } from '../../lib/overlay.js';
 import { PostCardFromEvent, serializeEvent } from '../../components/PostCard.js';
@@ -16,7 +15,10 @@ export function ExploreView() {
       {/* Sticky Header */}
       <view className="flex justify-between h-16 items-center px-4 pt-4 border-b border-base-200 bg-base-300 bg-opacity-80">
         <view className="flex gap-2 items-center">
-          <view className="w-8 h-8 border border-white/20 rounded-full flex items-center justify-center" bindtap={() => pushModal('followlists')}>
+          <view
+            className="w-8 h-8 border border-white/20 rounded-full flex items-center justify-center"
+            bindtap={() => pushModal('followlists')}
+          >
             <text className="text-lg text-white">∞</text>
           </view>
         </view>

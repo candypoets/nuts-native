@@ -5,8 +5,8 @@ import { root, view, text, input } from '@lynx-js/react';
 import { PageShell } from '../../components/PageShell.js';
 import { useStores } from '../../stores/StoreContext.js';
 import { StoreProvider } from '../../stores/StoreContext.js';
-import { useSignEvent, getKind0, kind0Cache, ParsedData } from '../../lib/nipworker-mock.js';
-import type { ParsedEvent } from '../../lib/nipworker-mock.js';
+import { useSignEvent, getKind0, kind0Cache, ParsedData } from '../../lib/nipworker.js';
+import type { ParsedEvent } from '../../lib/nipworker.js';
 
 function deepEqual(a: any, b: any): boolean {
   if (a === b) return true;

@@ -172,7 +172,7 @@ src/
   components/          # Shared components (PostCard, OverlayContainer, etc.)
   hooks/               # React hooks (useExploreFeed, etc.)
   stores/              # State management (StoreContext)
-  lib/                 # Utilities (navigation, overlay, nipworker-mock)
+  lib/                 # Utilities (navigation, overlay, nipworker adapter)
   app.css              # Global CSS (Tailwind imports + custom properties)
 ios/SparklingGo/       # iOS native project
   SparklingGo/         # Swift source files

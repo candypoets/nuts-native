@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import * as storage from './storage.js';
-import { subscribeToEvents, isParsedEvent, type ParsedEvent, type WorkerMessage } from '../lib/nipworker-mock.js';
+import { subscribeToEvents, isParsedEvent, type ParsedEvent, type WorkerMessage } from '../lib/nipworker.js';
 
 function lastReadKey(pubkey: string): string {
 	return `notifications_last_read_${pubkey}`;

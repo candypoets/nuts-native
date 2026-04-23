@@ -22,6 +22,8 @@ import com.tiktok.sparkling.method.router.open.RouterOpenMethod
 import com.tiktok.sparkling.method.router.utils.RouterProvider
 import com.example.sparkling.go.LynxInputComponent
 import com.example.sparkling.go.BuiltinTemplateProvider
+import com.candypoets.nipworker.lynx.NipworkerLynxModule
+import com.tiktok.sparkling.hybridkit.lynx.SparklingLynxModuleWrapper
 
 
 class SparklingApplication : Application() {
@@ -46,7 +48,7 @@ class SparklingApplication : Application() {
 
     private fun initHybridKit() {
         HybridKit.init(this)
-        val baseInfoConfig = BaseInfoConfig(isDebug = BuildConfig.DEBUG)
+        val baseInfoConfig = BaseInfoConfig(isDebug = false)
         val lynxConfig = SparklingLynxConfig.build(this) {
             addBehaviors(listOf(
                 object : Behavior("input", false) {
@@ -56,6 +58,14 @@ class SparklingApplication : Application() {
                 }
             ))
             setTemplateProvider(BuiltinTemplateProvider(this@SparklingApplication))
+            addLynxModules(
+                mapOf(
+                    "NipworkerLynxModule" to SparklingLynxModuleWrapper(NipworkerLynxModule::class.java, null)
+                )
+            )
+            setAdditionInit {
+                tryToLoadV8Bridge(true)
+            }
         }
         val hybridConfig = SparklingHybridConfig.build(baseInfoConfig) {
             setLynxConfig(lynxConfig)

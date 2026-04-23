@@ -1,0 +1,39 @@
+diff --git a/node_modules/nostr-tools/lib/cjs/index.js b/node_modules/nostr-tools/lib/cjs/index.js
+index 4899d09..2fce8ae 100644
+--- a/node_modules/nostr-tools/lib/cjs/index.js
++++ b/node_modules/nostr-tools/lib/cjs/index.js
+@@ -2431,7 +2431,7 @@ function normalizeIdentifier(name) {
+   name = name.trim().toLowerCase();
+   name = name.normalize("NFKC");
+   return Array.from(name).map((char) => {
+-    if (/\p{Letter}/u.test(char) || /\p{Number}/u.test(char)) {
++    if (/[a-zA-Z].test(char) || /[0-9].test(char)) {
+       return char;
+     }
+     return "-";
+diff --git a/node_modules/nostr-tools/lib/esm/index.js b/node_modules/nostr-tools/lib/esm/index.js
+index 3870276..7879557 100644
+--- a/node_modules/nostr-tools/lib/esm/index.js
++++ b/node_modules/nostr-tools/lib/esm/index.js
+@@ -2372,7 +2372,7 @@ function normalizeIdentifier(name) {
+   name = name.trim().toLowerCase();
+   name = name.normalize("NFKC");
+   return Array.from(name).map((char) => {
+-    if (/\p{Letter}/u.test(char) || /\p{Number}/u.test(char)) {
++    if (/[a-zA-Z].test(char) || /[0-9].test(char)) {
+       return char;
+     }
+     return "-";
+diff --git a/node_modules/nostr-tools/lib/nostr.bundle.js b/node_modules/nostr-tools/lib/nostr.bundle.js
+index bafccfe..f8a72b8 100644
+--- a/node_modules/nostr-tools/lib/nostr.bundle.js
++++ b/node_modules/nostr-tools/lib/nostr.bundle.js
+@@ -6513,7 +6513,7 @@ var NostrTools = (() => {
+     name = name.trim().toLowerCase();
+     name = name.normalize("NFKC");
+     return Array.from(name).map((char) => {
+-      if (/\p{Letter}/u.test(char) || /\p{Number}/u.test(char)) {
++      if (/[a-zA-Z].test(char) || /[0-9].test(char)) {
+         return char;
+       }
+       return "-";

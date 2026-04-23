@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { subscribeToEvents, isParsedEvent, type ParsedEvent, type WorkerMessage } from '../lib/nipworker-mock.js';
+import { subscribeToEvents, isParsedEvent, type ParsedEvent, type WorkerMessage } from '../lib/nipworker.js';
 
 export type NotificationType = 'reply' | 'mention' | 'reaction' | 'repost';
 
