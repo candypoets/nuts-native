@@ -15,6 +15,7 @@ This is a **brownfield iOS app** built with [Sparkling](https://sparkling.sh) (v
 - Node.js 22.x
 - Ruby 3.3+ (for CocoaPods) — system Ruby (2.6) is too old
 - iOS Simulator (iPhone 17 Pro is the default target)
+- Android Emulator (Pixel 7 API 34) — see setup below
 
 ## Build & Run Workflow
 
@@ -27,13 +28,19 @@ In DEBUG builds, the app loads bundles directly from the dev server. No rebuild 
 npx rspeedy dev -c .sparkling/lynx.config.ts
 ```
 
-**Terminal 2** — build and launch the iOS app:
+**Terminal 2** — build and launch:
+
 ```bash
+# iOS
 export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
 npm run run:ios
-```
 
-This runs autolink → pod install → build → install → launch automatically.
+# Android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$JAVA_HOME/bin:$PATH"
+cd android && ./gradlew assembleDebug && adb install -r app/build/outputs/apk/debug/app-debug.apk && adb shell am start -n com.example.sparkling.go/.SplashActivity
+```
 
 ### Production Build (manual)
 
@@ -232,6 +239,66 @@ lynxEnv.logBoxEnabled = true
 ```
 
 Connect with [Lynx DevTool Desktop](https://github.com/lynx-family/lynx-devtool) for deep debugging.
+
+## Android Emulator Setup
+
+The Android emulator is already configured on this machine. Here's how to manage it:
+
+### Environment Variables (add to `~/.zshrc`)
+```bash
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin:$JAVA_HOME/bin:$PATH"
+```
+
+### Start the Emulator
+```bash
+emulator -avd Pixel_7_API_34 -no-boot-anim -gpu host
+```
+
+Or in the background:
+```bash
+nohup emulator -avd Pixel_7_API_34 -no-boot-anim -no-snapshot-save -gpu host > /tmp/emulator.log 2>&1 &
+```
+
+### ADB Commands
+```bash
+# Check connected devices
+adb devices
+
+# Install APK
+adb install -r android/app/build/outputs/apk/debug/app-debug.apk
+
+# Launch app
+adb shell am start -n com.example.sparkling.go/.SplashActivity
+
+# Kill app
+adb shell am force-stop com.example.sparkling.go
+
+# Screenshot
+adb shell screencap -p /sdcard/screen.png && adb pull /sdcard/screen.png /tmp/android.png
+
+# Tap (x, y in pixels)
+adb shell input tap 540 1200
+
+# Swipe (x1 y1 x2 y2 duration_ms)
+adb shell input swipe 540 1500 540 500 300
+
+# Press back
+adb shell input keyevent KEYCODE_BACK
+```
+
+### Android Dev Server URL
+The Android emulator uses `10.0.2.2` to reach the host machine. The dev server URL is configured in:
+`android/app/src/main/java/com/example/sparkling/go/SplashActivity.kt`
+
+```kotlin
+val bundleUrl = when {
+    bundleName.startsWith("http") -> bundleName
+    BuildConfig.DEBUG -> "http://10.0.2.2:3002/$bundleName"
+    else -> "asset:///$bundleName"
+}
+```
 
 ## Testing Changes (Production / Release)
 
