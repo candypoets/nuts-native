@@ -49,7 +49,7 @@ struct SPKSwiftVC: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
         #if DEBUG
-        let url = "hybrid://lynxview_page?bundle=http://192.168.178.132:3000/main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
+        let url = "hybrid://lynxview_page?bundle=http://192.168.128.196:3002/main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
         #else
         let url = "hybrid://lynxview_page?bundle=main.lynx.bundle&hide_status_bar=1&hide_nav_bar=1"
         #endif

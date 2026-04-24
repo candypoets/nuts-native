@@ -9,7 +9,7 @@ struct SparklingAutolinkModule {
 
 let sparklingAutolinkBundleId = "cash.nuts.app"
 let sparklingAutolinkModules: [SparklingAutolinkModule] = [
+    SparklingAutolinkModule(name: "sparkling-navigation", iosModuleName: "Router", className: "RouterMethod"),
     SparklingAutolinkModule(name: "sparkling-media", iosModuleName: "", className: ""),
-    SparklingAutolinkModule(name: "sparkling-storage", iosModuleName: "SPKStorage", className: "StorageMethod"),
-    SparklingAutolinkModule(name: "sparkling-navigation", iosModuleName: "Router", className: "RouterMethod")
+    SparklingAutolinkModule(name: "sparkling-storage", iosModuleName: "SPKStorage", className: "StorageMethod")
 ]
